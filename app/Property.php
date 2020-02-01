@@ -12,5 +12,5 @@ class Property extends Model
     use Spatial;
 
     protected $spatial = ['coordinates'];
-    protected $translatable = ['title', 'summary', 'content'];
+    protected $translatable = ['summary', 'content'];
 }
