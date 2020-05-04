@@ -3,6 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Adriaville - Adriatic Cost Rentals">
+    <meta property="og:description" content="Offering high quality villas for individuals or groups.">
+    <meta property="og:image" content="http://142.93.174.229/assets/img/hero-home-image.png">
+    <meta property="og:url" content="http://142.93.174.229/">
     <title>AdriaVille</title>
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
