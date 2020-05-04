@@ -13,4 +13,9 @@ class Property extends Model
 
     protected $spatial = ['coordinates'];
     protected $translatable = ['summary', 'content'];
+
+    public function fetchByCountry()
+    {
+        return;
+    }
 }

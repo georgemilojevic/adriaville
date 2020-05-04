@@ -9,4 +9,6 @@ class Country extends Model
 {
     use Translatable;
     protected $translatable = ['name'];
+
+    protected $table = 'countries';
 }

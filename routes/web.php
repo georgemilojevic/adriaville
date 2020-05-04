@@ -11,11 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomePageController@index');
+Route::get('/contact', 'HomePageController@contact');
+Route::get('property/{id}', 'PropertiesController@show');
 
+Route::get('/search', 'HomePageController@searchProperties')->name('searchProperties');
+Route::post('/search', 'HomePageController@search');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Auth::routes();
