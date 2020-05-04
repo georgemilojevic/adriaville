@@ -116,6 +116,8 @@ class HomePageController extends Controller
                     ->orderBy('id', 'desc')
                     ->limit(3)
                     ->get();
+            } else {
+                return null;
             }
         } catch (InvalidCountryName $exception) {
             throw $exception::invalidCountryName();
