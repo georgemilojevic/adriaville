@@ -23,11 +23,11 @@ class HomePageController extends Controller
      */
     public function index()
     {
-        $croatiaTopThree = $this->fetchByCountry(self::CROATIA);
-        $bosniaAndHerzegovina = $this->fetchByCountry(self::BOSNIA_AND_HERZEGOVINA);
-        $sloveniaTopThree = $this->fetchByCountry(self::SLOVENIA);
-        $albaniaTopThree = $this->fetchByCountry(self::ALBANIA);
-        $montenegroTopThree = $this->fetchByCountry(self::MONTENEGRO);
+        $croatiaTopThree = Property::fetchByCountry(self::CROATIA);
+        $bosniaAndHerzegovina = Property::fetchByCountry(self::BOSNIA_AND_HERZEGOVINA);
+        $sloveniaTopThree = Property::fetchByCountry(self::SLOVENIA);
+        $albaniaTopThree = Property::fetchByCountry(self::ALBANIA);
+        $montenegroTopThree = Property::fetchByCountry(self::MONTENEGRO);
         $spotlightVillas = SpotlightVillas::spotlightVillas();
 
         return view('index', [
