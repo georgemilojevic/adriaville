@@ -134,9 +134,12 @@
     <div class="container">
         <h2>Villas in the spotlight</h2>
         <div class="row">
+
+            @foreach($spotlightVillas as $spotlightVilla)
             <div class="col-lg-6 col-sm-6">
                 <div class="spotlight-item">
-                    <div class="spotlight-image" style="background-image: url('https://fakeimg.pl/240x230/D9D9D9/B7B7B7/?retina=1')">
+                    <?php $spotlightVillaImages = json_decode($spotlightVilla->images); ?>
+                    <div class="spotlight-image" style="background-image: url(<?= 'storage/' . $spotlightVillaImages[0] ?>)">
                         <div class="spotlight-image-overlay">
                      <span class="spotlight-star">
                      <i class="far fa-star"></i> 5.0
@@ -144,46 +147,21 @@
                         </div>
                     </div>
                     <div class="spotlight-content">
-                        <h3>Villa name</h3>
+                        <h3><?= $spotlightVilla['title']?></h3>
                         <ul class="spotlight-list">
-                            <li>Idyllic rural location</li>
-                            <li>Loving furnishing style</li>
-                            <li>Ideal for families</li>
+                            <li><?=$spotlightVilla['content']; ?></li>
                         </ul>
                         <div class="spotlight-icons">
                             <span><i class="fal fa-user"></i> 7</span>
                             <span><i class="fal fa-bed"></i> 4</span>
                             <span><i class="fal fa-bath"></i> 6</span>
                         </div>
-                        <a href="#" class="spotlight-book">Book villa</a>
+                        <a href="/property/<?=$spotlightVilla['id']?>" class="spotlight-book">Book villa</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-sm-6">
-                <div class="spotlight-item">
-                    <div class="spotlight-image" style="background-image: url('https://fakeimg.pl/240x230/D9D9D9/B7B7B7/?retina=1')">
-                        <div class="spotlight-image-overlay">
-                     <span class="spotlight-star">
-                     <i class="far fa-star"></i> 5.0
-                     </span>
-                        </div>
-                    </div>
-                    <div class="spotlight-content">
-                        <h3>Villa name</h3>
-                        <ul class="spotlight-list">
-                            <li>Idyllic rural location</li>
-                            <li>Loving furnishing style</li>
-                            <li>Ideal for families</li>
-                        </ul>
-                        <div class="spotlight-icons">
-                            <span><i class="fal fa-user"></i> 7</span>
-                            <span><i class="fal fa-bed"></i> 4</span>
-                            <span><i class="fal fa-bath"></i> 6</span>
-                        </div>
-                        <a href="#" class="spotlight-book">Book villa</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
 </section>
@@ -227,69 +205,20 @@
                     </div>
                     <div class="col-lg-7 discover-carousel-wrapper">
                         <div class="owl-carousel discvover-carousel">
+                        @if(!empty($croatiaTopThree))
+                            @foreach($croatiaTopThree as $croatiaVillas)
+                            <?php $croatiaVillasImages = json_decode($croatiaVillas->images); ?>
                             <div class="item">
                                 <div class="discover-item-wrapper">
                                     <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
+                                        <div class="discover-image" style="background-image: url(<?= 'storage/' . $croatiaVillasImages[0] ?>)"></div>
+                                        <h4><?=$croatiaVillas['title']?></h4>
+                                        <a class="btn-explore" href="/property/<?=$croatiaVillas['id']; ?>">Explore</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+                        @endif
                         </div>
                     </div>
                 </div>
@@ -313,69 +242,20 @@
                     </div>
                     <div class="col-lg-7 discover-carousel-wrapper">
                         <div class="owl-carousel discvover-carousel">
+                        @if(!empty($sloveniaTopThree))
+                            @foreach($sloveniaTopThree as $sloveniaVillas)
+                                <?php $sloveniaVillaImages = json_decode($sloveniaVillas->images); ?>
                             <div class="item">
                                 <div class="discover-item-wrapper">
                                     <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
+                                        <div class="discover-image" style="background-image: url(<?= '/storage/' . $sloveniaVillaImages[0]; ?>)"></div>
+                                        <h4><?=$sloveniaVillas['title'] ?></h4>
                                         <a class="btn-explore" href="#">Explore</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+                        @endif
                         </div>
                     </div>
                 </div>

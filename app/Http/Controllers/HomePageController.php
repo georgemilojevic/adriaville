@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Country;
 use App\Exceptions\InvalidCountryName;
 use App\Property;
+use App\SpotlightVillas;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -27,7 +28,7 @@ class HomePageController extends Controller
         $sloveniaTopThree = $this->fetchByCountry(self::SLOVENIA);
         $albaniaTopThree = $this->fetchByCountry(self::ALBANIA);
         $montenegroTopThree = $this->fetchByCountry(self::MONTENEGRO);
-        $spotlightVillas = $this->spotlight();
+        $spotlightVillas = SpotlightVillas::spotlightVillas();
 
         return view('index', [
             'croatiaTopThree' => $croatiaTopThree,
@@ -37,11 +38,6 @@ class HomePageController extends Controller
             'bosniaAndHerzegovina' => $bosniaAndHerzegovina,
             'spotlightVillas' => $spotlightVillas,
         ]);
-    }
-
-    public function contact()
-    {
-        return view('contact', []);
     }
 
     protected function propertySlider()
@@ -77,6 +73,7 @@ class HomePageController extends Controller
 
         return redirect()->route('searchProperties', [
             'properties' => $searchedProperties->get()->all(),
+            'guests' => $request->input('data')['guests'],
             'checkinDate' => $request->input('data')['startDate']['date'],
             'checkoutDate' => $request->input('data')['endDate']['date'],
         ]);
@@ -86,43 +83,5 @@ class HomePageController extends Controller
 //            'checkinDate' => $request->input('checkin_date'),
 //            'checkoutDate' => $request->input('checkout_date'),
 //        ]);
-    }
-
-    public function spotlight()
-    {
-        return Property::query()
-            ->select('properties.*')
-            ->from('properties')
-            ->limit(5)
-        ;
-    }
-
-    /**
-     * @param string $country
-     * @return mixed
-     * @throws InvalidCountryName
-     */
-    private function fetchByCountry(string $country)
-    {
-        $today = new \DateTime('NOW');
-
-        /** @var Country $countryName */
-        $countryName = Country::where('name', $country)->first();
-
-        try {
-            if (!empty($countryName)) {
-                $properties = Property::where('published_at', '<',  $today->format('Y-m-d H:i:s'))
-                    ->where('country_id', '=', $countryName->id)
-                    ->orderBy('id', 'desc')
-                    ->limit(3)
-                    ->get();
-            } else {
-                return null;
-            }
-        } catch (InvalidCountryName $exception) {
-            throw $exception::invalidCountryName();
-        }
-
-        return $properties;
     }
 }

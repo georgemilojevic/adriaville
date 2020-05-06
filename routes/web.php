@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'HomePageController@index');
-Route::get('/contact', 'HomePageController@contact');
+Route::get('/all-country-properties/{country}', 'PropertiesController@allCountryProperties');
 Route::get('property/{id}', 'PropertiesController@show');
 
 Route::get('/search', 'HomePageController@searchProperties')->name('searchProperties');

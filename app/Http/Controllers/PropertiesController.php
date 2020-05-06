@@ -17,4 +17,13 @@ class PropertiesController extends Controller
             'property' => Property::where('id', $id)->firstOrFail()
         ]);
     }
+
+    public function allCountryProperties(string $country)
+    {
+        $property = new Property();
+
+        return view('search', [
+            'properties' => Property::fetchByCountry($country),
+        ]);
+    }
 }

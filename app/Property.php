@@ -14,8 +14,26 @@ class Property extends Model
     protected $spatial = ['coordinates'];
     protected $translatable = ['summary', 'content'];
 
-    public function fetchByCountry()
+    /**
+     * @param string $country
+     * @return |null
+     * @throws \Exception
+     */
+    public static function fetchByCountry(string $country, int $limit = 6)
     {
-        return;
+        $today = new \DateTime('NOW');
+
+        /** @var Country $countryName */
+        $countryName = Country::where('name', $country)->first();
+
+        if (!empty($countryName)) {
+            return Property::where('published_at', '<',  $today->format('Y-m-d H:i:s'))
+                ->where('country_id', '=', $countryName->id)
+                ->orderBy('id', 'desc')
+                ->limit($limit)
+                ->get();
+        } else {
+            return null;
+        }
     }
 }
