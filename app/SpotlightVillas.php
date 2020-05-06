@@ -13,7 +13,7 @@ class SpotlightVillas extends Model
             ->from('spotlight_villas AS sv')
             ->leftJoin('properties as p', 'sv.property_id', '=', 'p.id')
             ->limit(2)
-            ->orderBy('sv.created_at')
+            ->orderBy('sv.created_at', 'DESC')
             ->get()
         ;
     }

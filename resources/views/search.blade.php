@@ -4,29 +4,29 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdriaVille</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
-    <link rel="manifest" href="assets/img/favicons/site.webmanifest">
-    <link rel="mask-icon" href="assets/img/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="assets/img/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/favicons/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicons/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('img/favicons/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ asset('img/favicons/safari-pinned-tab.svg') }}" color="#5bbad5">
+    <link rel="shortcut icon" href="{{ asset('img/favicons/favicon.ico') }}">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="assets/img/favicons/browserconfig.xml">
+    <meta name="msapplication-config" content="{{ asset('img/favicons/browserconfig.xml') }}">
     <meta name="theme-color" content="#ffffff">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i&display=swap&subset=latin-ext" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/amsify.select.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/lightpick.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/amsify.select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/lightpick.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" type="text/css" href="https://pro.fontawesome.com/releases/v5.1.0/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css?v=<?php echo date("h:i:sa"); ?>">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/style.css/?v='.date("h:i:sa")) }}">
 </head>
 <body>
-<div id="preloader" class="preloader"><img src="/assets/img/loading.svg"></div>
+<div id="preloader" class="preloader"><img src="{{ asset('/assets/img/loading.svg') }}"></div>
 <header>
-    <div class="container">
+    <div class="container" id="app">
         <nav class="navbar-light navbar navbar-expand-lg">
             <a class="navbar-brand" href="/"><span class="logo"></span> Adriaville</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -267,7 +267,7 @@
     <div class="container">
         <div class="row">
             <div class="footer-content">
-                <img src="/assets/img/logo-color.svg" class="footer-logo" alt="">
+                <img src="{{ asset('/assets/img/logo-color.svg') }}" class="footer-logo" alt="">
                 <div class="footer-links">
                     <a href="#">List Your Property</a>
                     <a href="#">About Us</a>
@@ -285,15 +285,15 @@
         </div>
     </div>
 </footer>
-<script src="js/app.js"></script>
-<script src="/assets/js/jquery.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('/assets/js/jquery.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="/assets/js/owl.carousel.min.js"></script>
-<script src="/assets/js/jquery.parallax-scroll.js"></script>
-<script src="/assets/js/jquery.amsifyselect.js"></script>
-<script src="/assets/js/lightpick.js"></script>
-<script src="/assets/js/custom.js"></script>
+<script src="{{ asset('/assets/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('/assets/js/jquery.parallax-scroll.js') }}"></script>
+<script src="{{ asset('/assets/js/jquery.amsifyselect.js') }}"></script>
+<script src="{{ asset('/assets/js/lightpick.js') }}"></script>
+<script src="{{ asset('/assets/js/custom.js') }}"></script>
 </body>
 </html>

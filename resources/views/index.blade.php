@@ -184,6 +184,10 @@
                 <a class="nav-link" id="montenegro-tab" data-toggle="tab" href="#montenegro" role="tab"
                    aria-controls="montenegro" aria-selected="false">Montenegro</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="bosnia-tab" data-toggle="tab" href="#bosnia" role="tab"
+                   aria-controls="montenegro" aria-selected="false">Bosnia and Herzegovina</a>
+            </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="croatia" role="tabpanel" aria-labelledby="croatia-tab">
@@ -205,15 +209,15 @@
                     </div>
                     <div class="col-lg-7 discover-carousel-wrapper">
                         <div class="owl-carousel discvover-carousel">
-                        @if(!empty($croatiaTopThree))
-                            @foreach($croatiaTopThree as $croatiaVillas)
-                            <?php $croatiaVillasImages = json_decode($croatiaVillas->images); ?>
+                        @if(!empty($croatianVillas))
+                            @foreach($croatianVillas as $croatianVilla)
+                            <?php $croatianVillasImages = json_decode($croatianVilla->images); ?>
                             <div class="item">
                                 <div class="discover-item-wrapper">
                                     <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url(<?= 'storage/' . $croatiaVillasImages[0] ?>)"></div>
-                                        <h4><?=$croatiaVillas['title']?></h4>
-                                        <a class="btn-explore" href="/property/<?=$croatiaVillas['id']; ?>">Explore</a>
+                                        <div class="discover-image" style="background-image: url({{ asset('storage/'.$croatianVillasImages[0]) }})"></div>
+                                        <h4><?=$croatianVilla['title']?></h4>
+                                        <a class="btn-explore" href="/property/<?=$croatianVilla['id']; ?>">Explore</a>
                                     </div>
                                 </div>
                             </div>
@@ -242,15 +246,17 @@
                     </div>
                     <div class="col-lg-7 discover-carousel-wrapper">
                         <div class="owl-carousel discvover-carousel">
-                        @if(!empty($sloveniaTopThree))
-                            @foreach($sloveniaTopThree as $sloveniaVillas)
-                                <?php $sloveniaVillaImages = json_decode($sloveniaVillas->images); ?>
+                        @if(!empty($slovenianVillas))
+                            @foreach($slovenianVillas as $slovenianVilla)
+                            <?php $sloveniaVillaImages = json_decode($slovenianVilla->images); ?>
                             <div class="item">
                                 <div class="discover-item-wrapper">
                                     <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url(<?= '/storage/' . $sloveniaVillaImages[0]; ?>)"></div>
-                                        <h4><?=$sloveniaVillas['title'] ?></h4>
-                                        <a class="btn-explore" href="#">Explore</a>
+
+                                        <div class="discover-image" style="background-image: url({{ asset('storage/'.$sloveniaVillaImages[0]) }})"></div>
+
+                                        <h4><?=$slovenianVilla['title'] ?></h4>
+                                        <a class="btn-explore" href="/property/{{$slovenianVilla['id']}}">Explore</a>
                                     </div>
                                 </div>
                             </div>
@@ -279,69 +285,20 @@
                     </div>
                     <div class="col-lg-7 discover-carousel-wrapper">
                         <div class="owl-carousel discvover-carousel">
+                            @if(!empty($albanianVillas))
+                            @foreach($albanianVillas as $albanianVilla)
+                                <?php $albanianVillaImages = json_decode($albanianVilla->images, true); ?>
                             <div class="item">
                                 <div class="discover-item-wrapper">
                                     <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
+                                        <div class="discover-image" style="background-image: url({{ asset('storage/'.$albanianVillaImages[0]) }})"></div>
+                                        <h4>{{ $albanianVilla['title'] }}</h4>
+                                        <a class="btn-explore" href="/property/{{ $albanianVilla['id'] }}">Explore</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -365,69 +322,57 @@
                     </div>
                     <div class="col-lg-7 discover-carousel-wrapper">
                         <div class="owl-carousel discvover-carousel">
+                            @if(!empty($montenegrianVillas))
+                            @foreach($montenegrianVillas as $montenegrianVilla)
+                            <?php $montenegrianVillaImages = json_decode($montenegrianVilla->images, true); ?>
                             <div class="item">
                                 <div class="discover-item-wrapper">
                                     <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
+                                        <div class="discover-image" style="background-image: url({{ asset('/storage/'.$montenegrianVillaImages[0]) }})"></div>
+                                        <h4>{{ $montenegrianVilla['title'] }}</h4>
+                                        <a class="btn-explore" href="/property/{{ $montenegrianVilla['id'] }}">Explore</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
+                            @endforeach
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="bosnia" role="tabpanel" aria-labelledby="bosnia-tab">
+                <div class="row">
+                    <div class="col-lg-5 discover-info">
+                        <h3>Discover
+                            Bosnia and Herzegovina
+                        </h3>
+                        <p>
+                            Ut ut dui eu dolor ultricies tempor.
+                            Aenean iaculis augue vel velit semper,
+                            id consequat dui consequat.
+                        </p>
+                        <a class="btn btn-primary" href="#" role="button">View all</a>
+                        <div class="discover-navigation">
+                            <button class="ds-prev disabled"><i class='fal fa-long-arrow-left'></i></button>
+                            <button class="ds-next"><i class='fal fa-long-arrow-right'></i></button>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 discover-carousel-wrapper">
+                        <div class="owl-carousel discvover-carousel">
+                            @if(!empty($bosnianVillas))
+                                @foreach($bosnianVillas as $bosnianVilla)
+                                    <?php $bosnianVillaImages = json_decode($bosnianVilla->images, true); ?>
+                                    <div class="item">
+                                        <div class="discover-item-wrapper">
+                                            <div class="discover-item">
+                                                <div class="discover-image" style="background-image: url({{ asset('/storage/'.$bosnianVillaImages[0]) }})"></div>
+                                                <h4>{{ $bosnianVilla['title'] }}</h4>
+                                                <a class="btn-explore" href="/property/{{ $bosnianVilla['id'] }}">Explore</a>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="discover-item-wrapper">
-                                    <div class="discover-item">
-                                        <div class="discover-image" style="background-image: url('https://fakeimg.pl/245x215/D9D9D9/B7B7B7/?retina=1')"></div>
-                                        <h4>Villa name</h4>
-                                        <a class="btn-explore" href="#">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>

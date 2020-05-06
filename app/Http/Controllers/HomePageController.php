@@ -23,26 +23,32 @@ class HomePageController extends Controller
      */
     public function index()
     {
-        $croatiaTopThree = Property::fetchByCountry(self::CROATIA);
-        $bosniaAndHerzegovina = Property::fetchByCountry(self::BOSNIA_AND_HERZEGOVINA);
-        $sloveniaTopThree = Property::fetchByCountry(self::SLOVENIA);
-        $albaniaTopThree = Property::fetchByCountry(self::ALBANIA);
-        $montenegroTopThree = Property::fetchByCountry(self::MONTENEGRO);
+        $croatianVillas = Property::fetchByCountry(self::CROATIA);
+        $bosnianVillas = Property::fetchByCountry(self::BOSNIA_AND_HERZEGOVINA);
+        $slovenianVillas = Property::fetchByCountry(self::SLOVENIA);
+        $albanianVillas = Property::fetchByCountry(self::ALBANIA);
+        $montenegrianVillas = Property::fetchByCountry(self::MONTENEGRO);
         $spotlightVillas = SpotlightVillas::spotlightVillas();
 
         return view('index', [
-            'croatiaTopThree' => $croatiaTopThree,
-            'sloveniaTopThree' => $sloveniaTopThree,
-            'montenegroTopThree' => $montenegroTopThree,
-            'albaniaTopThree' => $albaniaTopThree,
-            'bosniaAndHerzegovina' => $bosniaAndHerzegovina,
+            'croatianVillas' => $croatianVillas,
+            'slovenianVillas' => $slovenianVillas,
+            'montenegrianVillas' => $montenegrianVillas,
+            'albanianVillas' => $albanianVillas,
+            'bosnianVillas' => $bosnianVillas,
             'spotlightVillas' => $spotlightVillas,
         ]);
     }
 
     protected function propertySlider()
     {
-        // tbc
+        return Property::query()
+            ->select('p.images', 'p.title')
+            ->from('properties AS p')
+            ->limit(5)
+            ->orderBy('p.created_at', 'DESC')
+            ->get()
+            ;
     }
 
     public function searchProperties()
