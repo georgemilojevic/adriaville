@@ -10,13 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::redirect('/', '/en');
 
-Route::group(['prefix' => '{language}'], function () {
+Route::post('/search', 'HomePageController@search');
+
+Route::group(['prefix' =>'{language}'], function () {
+
     Route::get('/', 'HomePageController@index');
     Route::get('/search', 'HomePageController@searchProperties')->name('searchProperties');
-    Route::post('/search', 'HomePageController@search');
 
-    Route::get('property/{id}', 'PropertiesController@show');
+    Route::get('/property/{id}', 'PropertiesController@show');
     Route::get('/all-country-properties/{country}', 'PropertiesController@allCountryProperties');
 
 });

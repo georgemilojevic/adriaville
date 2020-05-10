@@ -40,6 +40,15 @@ class HomePageController extends Controller
         ]);
     }
 
+    /**
+     * @param $language
+     * @return \Illuminate\Contracts\View\Factory|View
+     */
+    public function searchProperties($language)
+    {
+        return view('search');
+    }
+
     protected function propertySlider()
     {
         return Property::query()
@@ -49,11 +58,6 @@ class HomePageController extends Controller
             ->orderBy('p.created_at', 'DESC')
             ->get()
             ;
-    }
-
-    public function searchProperties()
-    {
-        return view('search');
     }
 
     /**

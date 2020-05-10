@@ -9,9 +9,10 @@ class PropertiesController extends Controller
 {
     /**
      * @param $id
+     * @param $language
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id)
+    public function show($language, $id)
     {
         return view('details', [
             'property' => Property::where('id', $id)->firstOrFail()
