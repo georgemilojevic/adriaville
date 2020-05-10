@@ -43,11 +43,33 @@
                         <a class="nav-link" href="/contact">Contact</a>
                     </li>
                     <li class="nav-item dropdown language-menu">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-gb"> </span> English</a>
+                        @if(app()->getLocale() === "en")
+
+                        <a class="nav-link dropdown-toggle" href="/{{ app()->getLocale() }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flag-icon flag-icon-gb"> </span> English</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown09">
-                            <a class="dropdown-item" href="#fr"><span class="flag-icon flag-icon-de"> </span>  German</a>
-                            <a class="dropdown-item" href="#it"><span class="flag-icon flag-icon-hr"> </span>  Croatian</a>
+                            <a class="dropdown-item" href="/de"><span class="flag-icon flag-icon-de"> </span>  German</a>
+                            <a class="dropdown-item" href="/hr"><span class="flag-icon flag-icon-hr"> </span>  Croatian</a>
                         </div>
+                        @endif
+
+                        @if(app()->getLocale() === "de")
+                                <a class="nav-link dropdown-toggle" href="/{{ app()->getLocale() }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="flag-icon flag-icon-de"> </span> Deutch</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown09">
+                                    <a class="dropdown-item" href="/en"><span class="flag-icon flag-icon-gb"> </span>  English</a>
+                                    <a class="dropdown-item" href="/hr"><span class="flag-icon flag-icon-hr"> </span>  Croatian</a>
+                                </div>
+                        @endif
+
+                        @if(app()->getLocale() === "hr")
+                            <a class="nav-link dropdown-toggle" href="/{{ app()->getLocale() }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flag-icon flag-icon-hr"> </span> Hrvatski</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown09">
+                                <a class="dropdown-item" href="/en"><span class="flag-icon flag-icon-gb"> </span>  English</a>
+                                <a class="dropdown-item" href="/hr"><span class="flag-icon flag-icon-de"> </span>  Deutch</a>
+                            </div>
+                        @endif
                     </li>
                 </ul>
             </div>
@@ -132,7 +154,7 @@
 </section>
 <section class="spotlight-section">
     <div class="container">
-        <h2>Villas in the spotlight</h2>
+        <h2>{{ __('Villas in the spotlight') }}</h2>
         <div class="row">
 
             @foreach($spotlightVillas as $spotlightVilla)
@@ -156,7 +178,7 @@
                             <span><i class="fal fa-bed"></i> 4</span>
                             <span><i class="fal fa-bath"></i> 6</span>
                         </div>
-                        <a href="/property/<?=$spotlightVilla['id']?>" class="spotlight-book">Book villa</a>
+                        <a href="/property/<?=$spotlightVilla['id']?>" class="spotlight-book">{{__('Book villa')}}</a>
                     </div>
                 </div>
             </div>
@@ -170,38 +192,35 @@
         <ul class="nav nav-tabs" id="discover" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="croatia-tab" data-toggle="tab" href="#croatia" role="tab" aria-controls="croatia"
-                   aria-selected="true">Croatia</a>
+                   aria-selected="true">{{ __('Croatia') }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="slovenia-tab" data-toggle="tab" href="#slovenia" role="tab" aria-controls="slovenia"
-                   aria-selected="false">Slovenia</a>
+                   aria-selected="false">{{ __('Slovenia') }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="albania-tab" data-toggle="tab" href="#albania" role="tab" aria-controls="albania"
-                   aria-selected="false">Albania</a>
+                   aria-selected="false">{{ __('Albania') }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="montenegro-tab" data-toggle="tab" href="#montenegro" role="tab"
-                   aria-controls="montenegro" aria-selected="false">Montenegro</a>
+                   aria-controls="montenegro" aria-selected="false">{{ __('Montenegro') }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="bosnia-tab" data-toggle="tab" href="#bosnia" role="tab"
-                   aria-controls="montenegro" aria-selected="false">Bosnia and Herzegovina</a>
+                   aria-controls="montenegro" aria-selected="false">{{ __('Bosnia and Herzegovina') }}</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="croatia" role="tabpanel" aria-labelledby="croatia-tab">
                 <div class="row">
                     <div class="col-lg-5 discover-info">
-                        <h3>Discover
-                            Croatia
-                        </h3>
+                        <h3>{{ __('Discover
+                        Croatia') }}</h3>
                         <p>
-                            Ut ut dui eu dolor ultricies tempor.
-                            Aenean iaculis augue vel velit semper,
-                            id consequat dui consequat.
+                            {{ __('Croatia Intro') }}
                         </p>
-                        <a class="btn btn-primary" href="#" role="button">View all</a>
+                        <a class="btn btn-primary" href="#" role="button">{{ __('View all') }}</a>
                         <div class="discover-navigation">
                             <button class="ds-prev disabled"><i class='fal fa-long-arrow-left'></i></button>
                             <button class="ds-next"><i class='fal fa-long-arrow-right'></i></button>
@@ -217,7 +236,7 @@
                                     <div class="discover-item">
                                         <div class="discover-image" style="background-image: url({{ asset('storage/'.$croatianVillasImages[0]) }})"></div>
                                         <h4><?=$croatianVilla['title']?></h4>
-                                        <a class="btn-explore" href="/property/<?=$croatianVilla['id']; ?>">Explore</a>
+                                        <a class="btn-explore" href="/property/<?=$croatianVilla['id']; ?>">{{ __('Explore') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -230,15 +249,12 @@
             <div class="tab-pane fade" id="slovenia" role="tabpanel" aria-labelledby="slovenia-tab">
                 <div class="row">
                     <div class="col-lg-5 discover-info">
-                        <h3>Discover
-                            Slovenia
-                        </h3>
+                        <h3>{{ __('Discover
+                            Slovenia') }}</h3>
                         <p>
-                            Ut ut dui eu dolor ultricies tempor.
-                            Aenean iaculis augue vel velit semper,
-                            id consequat dui consequat.
+                            {{ __('Slovenia Intro') }}
                         </p>
-                        <a class="btn btn-primary" href="#" role="button">View all</a>
+                        <a class="btn btn-primary" href="#" role="button">{{ __('View all') }}</a>
                         <div class="discover-navigation">
                             <button class="ds-prev disabled"><i class='fal fa-long-arrow-left'></i></button>
                             <button class="ds-next"><i class='fal fa-long-arrow-right'></i></button>
@@ -256,7 +272,7 @@
                                         <div class="discover-image" style="background-image: url({{ asset('storage/'.$sloveniaVillaImages[0]) }})"></div>
 
                                         <h4><?=$slovenianVilla['title'] ?></h4>
-                                        <a class="btn-explore" href="/property/{{$slovenianVilla['id']}}">Explore</a>
+                                        <a class="btn-explore" href="/property/{{$slovenianVilla['id']}}">{{ __('Explore') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -269,15 +285,12 @@
             <div class="tab-pane fade" id="albania" role="tabpanel" aria-labelledby="albania-tab">
                 <div class="row">
                     <div class="col-lg-5 discover-info">
-                        <h3>Discover
-                            Albania
-                        </h3>
+                        <h3>{{ __('Discover
+                            Albania') }}</h3>
                         <p>
-                            Ut ut dui eu dolor ultricies tempor.
-                            Aenean iaculis augue vel velit semper,
-                            id consequat dui consequat.
+                            {{ __('Albania Intro') }}
                         </p>
-                        <a class="btn btn-primary" href="#" role="button">View all</a>
+                        <a class="btn btn-primary" href="#" role="button">{{ __('View all') }}</a>
                         <div class="discover-navigation">
                             <button class="ds-prev disabled"><i class='fal fa-long-arrow-left'></i></button>
                             <button class="ds-next"><i class='fal fa-long-arrow-right'></i></button>
@@ -293,7 +306,7 @@
                                     <div class="discover-item">
                                         <div class="discover-image" style="background-image: url({{ asset('storage/'.$albanianVillaImages[0]) }})"></div>
                                         <h4>{{ $albanianVilla['title'] }}</h4>
-                                        <a class="btn-explore" href="/property/{{ $albanianVilla['id'] }}">Explore</a>
+                                        <a class="btn-explore" href="/property/{{ $albanianVilla['id'] }}">{{ __('Explore') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -306,15 +319,12 @@
             <div class="tab-pane fade" id="montenegro" role="tabpanel" aria-labelledby="montenegro-tab">
                 <div class="row">
                     <div class="col-lg-5 discover-info">
-                        <h3>Discover
-                            Montenegro
-                        </h3>
+                        <h3>{{ __('Discover
+                            Montenegro') }}</h3>
                         <p>
-                            Ut ut dui eu dolor ultricies tempor.
-                            Aenean iaculis augue vel velit semper,
-                            id consequat dui consequat.
+                            {{ __('Montenegro Intro') }}
                         </p>
-                        <a class="btn btn-primary" href="#" role="button">View all</a>
+                        <a class="btn btn-primary" href="#" role="button">{{ __('View all') }}</a>
                         <div class="discover-navigation">
                             <button class="ds-prev disabled"><i class='fal fa-long-arrow-left'></i></button>
                             <button class="ds-next"><i class='fal fa-long-arrow-right'></i></button>
@@ -330,7 +340,7 @@
                                     <div class="discover-item">
                                         <div class="discover-image" style="background-image: url({{ asset('/storage/'.$montenegrianVillaImages[0]) }})"></div>
                                         <h4>{{ $montenegrianVilla['title'] }}</h4>
-                                        <a class="btn-explore" href="/property/{{ $montenegrianVilla['id'] }}">Explore</a>
+                                        <a class="btn-explore" href="/property/{{ $montenegrianVilla['id'] }}">{{ __('Explore') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -343,15 +353,12 @@
             <div class="tab-pane fade" id="bosnia" role="tabpanel" aria-labelledby="bosnia-tab">
                 <div class="row">
                     <div class="col-lg-5 discover-info">
-                        <h3>Discover
-                            Bosnia and Herzegovina
-                        </h3>
+                        <h3>{{ __('Discover
+                            Bosnia and Herzegovina') }}</h3>
                         <p>
-                            Ut ut dui eu dolor ultricies tempor.
-                            Aenean iaculis augue vel velit semper,
-                            id consequat dui consequat.
+                            {{ __('Bosnia Intro') }}
                         </p>
-                        <a class="btn btn-primary" href="#" role="button">View all</a>
+                        <a class="btn btn-primary" href="#" role="button">{{ __('View all') }}</a>
                         <div class="discover-navigation">
                             <button class="ds-prev disabled"><i class='fal fa-long-arrow-left'></i></button>
                             <button class="ds-next"><i class='fal fa-long-arrow-right'></i></button>
@@ -367,7 +374,7 @@
                                             <div class="discover-item">
                                                 <div class="discover-image" style="background-image: url({{ asset('/storage/'.$bosnianVillaImages[0]) }})"></div>
                                                 <h4>{{ $bosnianVilla['title'] }}</h4>
-                                                <a class="btn-explore" href="/property/{{ $bosnianVilla['id'] }}">Explore</a>
+                                                <a class="btn-explore" href="/property/{{ $bosnianVilla['id'] }}">{{ __('Explore') }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -384,12 +391,13 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 extras-content">
-                <h3>Adriaville
-                    Extras
+                <h3>
+                    {{ __('Adriaville
+                    Extras') }}
                 </h3>
-                <h5>We are here for everything you need</h5>
+                <h5>{{ __('We are here for everything you need') }}</h5>
                 <p>
-                    Ut ut dui eu dolor ultricies tempor. Aenean iaculis  augue vel velit semper, id consequat dui consequat. Nulla eu cursus ligula. Aenean iaculis augue vel velit semper, id consequat dui consequat.
+                    {{ __('Extras description') }}
                 </p>
             </div>
             <div class="col-lg-6 floating-cards">
@@ -397,21 +405,21 @@
                     <div class="col-lg-6 floating-card-wrapper" data-parallax='{"x": 0, "y": 40}'>
                         <div class="floating-card-item">
                             <img src="https://fakeimg.pl/220x155/D9D9D9/B7B7B7/?retina=1" class="img-fluid" alt="" >
-                            <h6>Private chef</h6>
+                            <h6>{{ __('Private chef') }}</h6>
                         </div>
                         <div class="floating-card-item">
                             <img src="https://fakeimg.pl/220x155/D9D9D9/B7B7B7/?retina=1" class="img-fluid" alt="">
-                            <h6>Chauffeur</h6>
+                            <h6>{{ __('Chauffeur') }}</h6>
                         </div>
                     </div>
                     <div class="col-lg-6 floating-card-wrapper" data-parallax='{"x": 0, "y": -40}'>
                         <div class="floating-card-item">
                             <img src="https://fakeimg.pl/220x155/D9D9D9/B7B7B7/?retina=1" class="img-fluid" alt="">
-                            <h6>Babysitter</h6>
+                            <h6>{{ __('Babysitter') }}</h6>
                         </div>
                         <div class="floating-card-item">
                             <img src="https://fakeimg.pl/220x155/D9D9D9/B7B7B7/?retina=1" class="img-fluid" alt="">
-                            <h6>Yacht Charter</h6>
+                            <h6>{{ __('Yacht Charter') }}</h6>
                         </div>
                     </div>
                 </div>
@@ -432,14 +440,13 @@
                 </div>
             </div>
             <div class="col-lg-5 about-content">
-                <h3>Adriaville
-                    About
-                </h3>
+                <h3>{{ __('Adriaville
+                    About') }}</h3>
                 <p>
-                    Ut ut dui eu dolor ultricies tempor. Aenean iaculis augue vel velit semper, id consequat dui consequat. Nulla eu cursus ligula. Phasellus turpis ex, sagittis at suscipit at, aliquam rhoncus orci.
+                    {{ __('Adriaville about text1') }}
                 </p>
                 <p>
-                    Ut ut dui eu dolor ultricies tempor. Aenean iaculis augue vel velit semper, id consequat dui consequat. Nulla eu cursus ligula.
+                    {{ __('Adriaville about text1') }}
                 </p>
             </div>
         </div>
@@ -449,20 +456,24 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-5">
-                <h3>
-                    Adria Care
-                </h3>
+                <h3>{{ __('Adria Care') }}</h3>
                 <p>
-                    Ut ut dui eu dolor ultricies tempor. Aenean iaculis augue vel velit semper, id consequat dui consequat. Nulla eu cursus ligula. Phasellus turpis ex, sagittis at suscipit at, aliquam rhoncus orci.
+                    {{ __('Adria care info') }}
                 </p>
                 <ul class="check-list">
                     <div class="row">
-                        <li class="col-lg-6">Local expertise</li>
-                        <li class="col-lg-6">Exclusive furnishing</li>
-                        <li class="col-lg-6">Best price guarantee</li>
-                        <li class="col-lg-6">Individual advice</li>
-                        <li class="col-lg-6">Data SSL encrypted</li>
-                        <li class="col-lg-6">Secure payment</li>
+                        <li class="col-lg-6">{{ __('Local expertise') }}
+                        </li>
+                        <li class="col-lg-6">{{ __('Exclusive furnishing') }}
+                        </li>
+                        <li class="col-lg-6">{{ __('Best price guarantee') }}
+                        </li>
+                        <li class="col-lg-6">{{ __('Individual advice') }}
+                        </li>
+                        <li class="col-lg-6">{{ __('Data SSL encrypted') }}
+                        </li>
+                        <li class="col-lg-6">{{ __('Secure payment') }}
+                        </li>
                     </div>
                 </ul>
             </div>
@@ -478,10 +489,9 @@
             <div class="footer-content">
                 <img src="/assets/img/logo-color.svg" class="footer-logo" alt="">
                 <div class="footer-links">
-                    <a href="#">List Your Property</a>
-                    <a href="#">About Us</a>
-                    <a href="#">Terms and Conditions</a>
-                    <a href="#">Contact</a>
+                    <a href="#">{{ __('List Your Property') }}</a>
+                    <a href="#">{{ __('Terms and Conditions') }}</a>
+                    <a href="#">{{ __('Contact') }}</a>
                 </div>
                 <div class="footer-social-links">
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -494,15 +504,14 @@
         </div>
     </div>
 </footer>
-<script src="js/app.js"></script>
-<script src="/assets/js/jquery.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="/assets/js/owl.carousel.min.js"></script>
-<script src="/assets/js/jquery.parallax-scroll.js"></script>
-<script src="/assets/js/jquery.amsifyselect.js"></script>
-<script src="/assets/js/lightpick.js"></script>
-<script src="/assets/js/custom.js"></script>
+<script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('/assets/js/jquery.parallax-scroll.js') }}"></script>
+<script src="{{ asset('/assets/js/jquery.amsifyselect.js') }}"></script>
+<script src="{{ asset('/assets/js/lightpick.js') }}"></script>
+<script src="{{ asset('/assets/js/custom.js') }}"></script>
 </body>
 </html>

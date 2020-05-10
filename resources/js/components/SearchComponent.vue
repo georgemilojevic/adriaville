@@ -32,7 +32,7 @@
                             <label for="totalGuests">Guests</label>
                             <div class="number-input-group">
                                 <span class="input-number-decrement" v-on:click="guests -= 1"><i class="fal fa-minus"></i></span>
-                                <input class="input-number" type="text" value="1" min="0" max="30" id="totalGuests" name="guests" v-model="guests" >
+                                <input class="input-number" type="text" value="0" min="0" max="30" id="totalGuests" name="guests" v-model="guests" >
                                 <span class="input-number-increment" v-on:click="guests += 1"><i class="fal fa-plus"></i></span>
                             </div>
                         </div>
@@ -69,44 +69,20 @@
         },
         methods: {
             formSubmit() {
-
-                console.log(this.guests, this.country, this.dates)
-
-                // axios({
-                //     method: 'post',
-                //     url: '/search',
-                //     responseType: 'stream',
-                //     data: {
-                //         guests: this.guests,
-                //         country: this.country,
-                //         startDate: this.dates.dateRange.start,
-                //         endDate: this.dates.dateRange.end,
-                //     }
-                // })
-                //     .then(response => {
-                //     console.log(response.body);
-                //     })
-                //     .catch(error => {
-                //         this.errors = error.response.data.errors || {};
-                //     });
-
-                // if (this.country !== "" && this.guests !== 0 && this.dates !== {}) {
-
-                    axios.post('/search', {
-                        data: {
-                            guests: this.guests,
-                            country: this.country,
-                            startDate: this.dates.dateRange.start,
-                            endDate: this.dates.dateRange.end,
-                        }
-                    })
-                    .then(response => {
-                        console.log(response.body);
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors || {};
-                    });
-                // }
+                axios.post('/search', {
+                    data: {
+                        guests: this.guests,
+                        country: this.country,
+                        startDate: this.dates.dateRange.start,
+                        endDate: this.dates.dateRange.end,
+                    }
+                })
+                .then(response => {
+                    console.log(response.body);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors || {};
+                });
             },
         },
     }

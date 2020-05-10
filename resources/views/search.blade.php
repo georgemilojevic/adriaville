@@ -43,9 +43,8 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
                                     class="flag-icon flag-icon-gb"> </span> English</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown09">
-                            <a class="dropdown-item" href="#fr"><span class="flag-icon flag-icon-fr"> </span> French</a>
-                            <a class="dropdown-item" href="#it"><span class="flag-icon flag-icon-it"> </span> Italian</a>
-                            <a class="dropdown-item" href="#ru"><span class="flag-icon flag-icon-ru"> </span> Russian</a>
+                            <a class="dropdown-item" href="/de"><span class="flag-icon flag-icon-de"> </span>  German</a>
+                            <a class="dropdown-item" href="/hr"><span class="flag-icon flag-icon-hr"> </span>  Croatian</a>
                         </div>
                     </li>
                 </ul>
@@ -286,7 +285,6 @@
     </div>
 </footer>
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('/assets/js/jquery.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
