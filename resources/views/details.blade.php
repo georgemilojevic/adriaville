@@ -36,15 +36,36 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="/contact">Contact</a>
                     </li>
                     <li class="nav-item dropdown language-menu">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-gb"> </span> English</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown09">
-                            <a class="dropdown-item" href="#fr"><span class="flag-icon flag-icon-fr"> </span>  French</a>
-                            <a class="dropdown-item" href="#it"><span class="flag-icon flag-icon-it"> </span>  Italian</a>
-                            <a class="dropdown-item" href="#ru"><span class="flag-icon flag-icon-ru"> </span>  Russian</a>
-                        </div>
+                        @if(app()->getLocale() === "en")
+
+                            <a class="nav-link dropdown-toggle" href="/{{ app()->getLocale() }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flag-icon flag-icon-gb"> </span> English</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown09">
+                                <a class="dropdown-item" href="/de"><span class="flag-icon flag-icon-de"> </span>  German</a>
+                                <a class="dropdown-item" href="/hr"><span class="flag-icon flag-icon-hr"> </span>  Croatian</a>
+                            </div>
+                        @endif
+
+                        @if(app()->getLocale() === "de")
+                            <a class="nav-link dropdown-toggle" href="/{{ app()->getLocale() }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flag-icon flag-icon-de"> </span> Deutch</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown09">
+                                <a class="dropdown-item" href="/en"><span class="flag-icon flag-icon-gb"> </span>  English</a>
+                                <a class="dropdown-item" href="/hr"><span class="flag-icon flag-icon-hr"> </span>  Croatian</a>
+                            </div>
+                        @endif
+
+                        @if(app()->getLocale() === "hr")
+                            <a class="nav-link dropdown-toggle" href="/{{ app()->getLocale() }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flag-icon flag-icon-hr"> </span> Hrvatski</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown09">
+                                <a class="dropdown-item" href="/en"><span class="flag-icon flag-icon-gb"> </span>  English</a>
+                                <a class="dropdown-item" href="/hr"><span class="flag-icon flag-icon-de"> </span>  Deutch</a>
+                            </div>
+                        @endif
                     </li>
                 </ul>
             </div>
@@ -65,7 +86,7 @@
             <div class="col-lg-6">
                 <div class="details-specifications">
                     <h1>{{ $property->title }}</h1>
-                    <p>{{ $property->summary }}</p>
+                    <p>{{ $property->getTranslatedAttribute('summary', app()->getLocale(), 'fallbackLocale') }}</p>
                     <ul class="detail-specification-list">
                         <li><i class="fal fa-user"></i> 7 People</li>
                         <li><i class="fal fa-bed"></i> 4 Beds</li>
@@ -102,7 +123,7 @@
                     <div class="tab-item">
                         <h3>Near Korcula town, Korcula island</h3>
                         <p>
-                            If you are looking for a spectacular villa with direct sea access, luxury design and peaceful surroundings, look no further than Villa Poppy - newly completed, the property is on three levels, located just 5 km from Korcula town. One of the main highlights of the property is the floor to ceiling windows which provide unsurpassed views over the bay and the Peljesac peninsula. The whole property is luxurious and elegantly designed and has been equipped using the best of everything, from crystal chandeliers to gorgeous fabrics and contemporary furnishings.
+                        {{ $property->getTranslatedAttribute('summary', app()->getLocale(), 'fallbackLocale') }}
                         </p>
                     </div>
                     <div class="tab-item">
@@ -137,6 +158,7 @@
                             40€ - 360€ <span>/ Night</span>
                         </div>
                         <p>
+
                             If you are looking for a spectacular villa with direct sea access, luxury design and peaceful surroundings, look no further than Villa Poppy - newly completed, the property is on three levels, located just 5 km from Korcula town. One of the main highlights of the property is the floor to ceiling windows which provide unsurpassed views over the bay and the Peljesac peninsula. The whole property is luxurious and elegantly designed and has been equipped using the best of everything, from crystal chandeliers to gorgeous fabrics and contemporary furnishings.
                         </p>
                     </div>

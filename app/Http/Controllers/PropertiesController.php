@@ -14,8 +14,10 @@ class PropertiesController extends Controller
      */
     public function show($language, $id)
     {
+        $property = Property::where('id', $id)->with('translations')->firstOrFail();
+
         return view('details', [
-            'property' => Property::where('id', $id)->firstOrFail()
+            'property' => $property
         ]);
     }
 

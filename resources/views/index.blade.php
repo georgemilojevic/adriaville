@@ -172,7 +172,9 @@
                     <div class="spotlight-content">
                         <h3><?= $spotlightVilla['title']?></h3>
                         <ul class="spotlight-list">
-                            <li><?=$spotlightVilla['content']; ?></li>
+                            <li>
+                                {{ __($spotlightVilla['content']) }}
+                            </li>
                         </ul>
                         <div class="spotlight-icons">
                             <span><i class="fal fa-user"></i> 7</span>
@@ -237,7 +239,7 @@
                                     <div class="discover-item">
                                         <div class="discover-image" style="background-image: url({{ asset('storage/'.$croatianVillasImages[0]) }})"></div>
                                         <h4><?=$croatianVilla['title']?></h4>
-                                        <a class="btn-explore" href="/property/<?=$croatianVilla['id']; ?>">{{ __('Explore') }}</a>
+                                        <a class="btn-explore" href="{{ app()->getLocale() }}/property/<?=$croatianVilla['id']; ?>">{{ __('Explore') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -273,7 +275,7 @@
                                         <div class="discover-image" style="background-image: url({{ asset('storage/'.$sloveniaVillaImages[0]) }})"></div>
 
                                         <h4><?=$slovenianVilla['title'] ?></h4>
-                                        <a class="btn-explore" href="/property/{{$slovenianVilla['id']}}">{{ __('Explore') }}</a>
+                                        <a class="btn-explore" href="{{ app()->getLocale() }}/property/{{$slovenianVilla['id']}}">{{ __('Explore') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +309,7 @@
                                     <div class="discover-item">
                                         <div class="discover-image" style="background-image: url({{ asset('storage/'.$albanianVillaImages[0]) }})"></div>
                                         <h4>{{ $albanianVilla['title'] }}</h4>
-                                        <a class="btn-explore" href="/property/{{ $albanianVilla['id'] }}">{{ __('Explore') }}</a>
+                                        <a class="btn-explore" href="{{ app()->getLocale() }}/property/{{ $albanianVilla['id'] }}">{{ __('Explore') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -341,7 +343,7 @@
                                     <div class="discover-item">
                                         <div class="discover-image" style="background-image: url({{ asset('/storage/'.$montenegrianVillaImages[0]) }})"></div>
                                         <h4>{{ $montenegrianVilla['title'] }}</h4>
-                                        <a class="btn-explore" href="/property/{{ $montenegrianVilla['id'] }}">{{ __('Explore') }}</a>
+                                        <a class="btn-explore" href="{{ app()->getLocale() }}/property/{{ $montenegrianVilla['id'] }}">{{ __('Explore') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -375,7 +377,7 @@
                                             <div class="discover-item">
                                                 <div class="discover-image" style="background-image: url({{ asset('/storage/'.$bosnianVillaImages[0]) }})"></div>
                                                 <h4>{{ $bosnianVilla['title'] }}</h4>
-                                                <a class="btn-explore" href="/property/{{ $bosnianVilla['id'] }}">{{ __('Explore') }}</a>
+                                                <a class="btn-explore" href="{{ app()->getLocale() }}/property/{{ $bosnianVilla['id'] }}">{{ __('Explore') }}</a>
                                             </div>
                                         </div>
                                     </div>

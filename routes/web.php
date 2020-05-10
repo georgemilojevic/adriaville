@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::redirect('/', '/en');
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
 
 Route::post('/search', 'HomePageController@search');
 
@@ -24,8 +27,5 @@ Route::group(['prefix' =>'{language}'], function () {
 
 });
 
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
-
 Auth::routes();
+Route::redirect('/', '/en');
