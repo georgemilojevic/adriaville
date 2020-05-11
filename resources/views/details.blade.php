@@ -158,7 +158,6 @@
                             40€ - 360€ <span>/ Night</span>
                         </div>
                         <p>
-
                             If you are looking for a spectacular villa with direct sea access, luxury design and peaceful surroundings, look no further than Villa Poppy - newly completed, the property is on three levels, located just 5 km from Korcula town. One of the main highlights of the property is the floor to ceiling windows which provide unsurpassed views over the bay and the Peljesac peninsula. The whole property is luxurious and elegantly designed and has been equipped using the best of everything, from crystal chandeliers to gorgeous fabrics and contemporary furnishings.
                         </p>
                     </div>

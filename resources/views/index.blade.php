@@ -98,46 +98,8 @@
             <div class="col-lg-11 mx-auto">
                 <div class="hero-form" id="app">
                     <form action="/{{ app()->getLocale() }}/search">
-                    <search-component></search-component>
+                        <search-component></search-component>
                     </form>
-
-{{--                    <form action="/search.php">--}}
-{{--                        <div class="container-fluid">--}}
-{{--                            <div class="row">--}}
-{{--                                <div class="hero-form-select-wrapper col-lg-10">--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="form-group col-lg-4">--}}
-{{--                                            <label for="country">Where would you like to stay?</label>--}}
-{{--                                            <select class="form-control" id="country" name="country">--}}
-{{--                                                <option value="">Select Country</option>--}}
-{{--                                                <option>Croatia</option>--}}
-{{--                                                <option>Albania</option>--}}
-{{--                                                <option>Slovenia</option>--}}
-{{--                                                <option>Montenegro</option>--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-group col-lg-4">--}}
-{{--                                            <label for="date">Check-in / Check-out</label>--}}
-{{--                                            <input type="text" id="search-date" placeholder="Anytime" class="form-control" autocomplete="off">--}}
-{{--                                            <span class="amsify-toggle-selection date-picker-chevron fal fa-chevron-down"></span>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-group col-lg-4">--}}
-{{--                                            <label for="guests">Guests</label>--}}
-{{--                                            <div class="number-input-group">--}}
-{{--                                                <span class="input-number-decrement"><i class="fal fa-minus"></i></span><input class="input-number" type="text" value="1" min="0" max="10"><span class="input-number-increment"><i class="fal fa-plus"></i></span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class=" col-lg-2 p-0">--}}
-{{--                                    <button class="hero-form-submit" type="submit">--}}
-{{--                                        <i class="fal fa-search"></i><span>Search</span>--}}
-{{--                                    </button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </form>--}}
-
                 </div>
             </div>
         </div>
