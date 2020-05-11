@@ -67,7 +67,7 @@
                                 <span class="flag-icon flag-icon-hr"> </span> Hrvatski</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown09">
                                 <a class="dropdown-item" href="/en"><span class="flag-icon flag-icon-gb"> </span>  English</a>
-                                <a class="dropdown-item" href="/hr"><span class="flag-icon flag-icon-de"> </span>  Deutch</a>
+                                <a class="dropdown-item" href="/de"><span class="flag-icon flag-icon-de"> </span>  Deutch</a>
                             </div>
                         @endif
                     </li>
@@ -77,30 +77,20 @@
     </div>
 </header>
 <section class="owl-carousel home-hero-slider">
-    <div class="item" style="background-image: url('/assets/img/hero-home-image.png');">
+    @foreach($headerSliders as $headerSlider)
+    <div class="item" style="background-image: url('storage/{{ $headerSlider['image'] }}');">
         <div class="overlay-slider">
             <div class="container">
                 <div class="row">
                     <div class="slider-text col-lg-11 mx-auto">
-                        <h3>Korcula Island</h3>
-                        <h2>Villa Poppy</h2>
+                        <h3>{{ $headerSlider['title'] }}</h3>
+                        <h2>{{ $headerSlider['description'] }}</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="item" style="background-image: url('/assets/img/hero-home-image.png');">
-        <div class="overlay-slider">
-            <div class="container">
-                <div class="row">
-                    <div class="slider-text col-lg-11 mx-auto">
-                        <h3>Korcula Island</h3>
-                        <h2>Villa Poppy</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @endforeach
 </section>
 <section class="hero-form-section">
     <div class="container">
@@ -218,8 +208,7 @@
             <div class="tab-pane fade show active" id="croatia" role="tabpanel" aria-labelledby="croatia-tab">
                 <div class="row">
                     <div class="col-lg-5 discover-info">
-                        <h3>{{ __('Discover
-                        Croatia') }}</h3>
+                        <h3>{{ __('Discover Croatia') }}</h3>
                         <p>
                             {{ __('Croatia Intro') }}
                         </p>
@@ -449,7 +438,7 @@
                     {{ __('Adriaville about text1') }}
                 </p>
                 <p>
-                    {{ __('Adriaville about text1') }}
+                    {{ __('Adriaville about text2') }}
                 </p>
             </div>
         </div>
@@ -497,7 +486,7 @@
                     <a href="#">{{ __('Contact') }}</a>
                 </div>
                 <div class="footer-social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/adriaville_com"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                 </div>
                 <div class="copyright">

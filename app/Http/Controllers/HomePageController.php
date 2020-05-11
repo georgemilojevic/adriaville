@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Country;
 use App\Exceptions\InvalidCountryName;
+use App\HeaderSlider;
 use App\Property;
 use App\SpotlightVillas;
 use Illuminate\View\View;
@@ -29,6 +30,7 @@ class HomePageController extends Controller
         $albanianVillas = Property::fetchByCountry(self::ALBANIA);
         $montenegrianVillas = Property::fetchByCountry(self::MONTENEGRO);
         $spotlightVillas = SpotlightVillas::spotlightVillas();
+        $headerSliders = $this->getHeaderSliders();
 
         return view('index', [
             'croatianVillas' => $croatianVillas,
@@ -37,6 +39,7 @@ class HomePageController extends Controller
             'albanianVillas' => $albanianVillas,
             'bosnianVillas' => $bosnianVillas,
             'spotlightVillas' => $spotlightVillas,
+            'headerSliders' => $headerSliders,
         ]);
     }
 
@@ -87,11 +90,14 @@ class HomePageController extends Controller
             'checkinDate' => $request->input('data')['startDate']['date'],
             'checkoutDate' => $request->input('data')['endDate']['date'],
         ]);
+    }
 
-//        return redirect('search', 302, [
-//            'properties' => $searchedProperties->get()->all(),
-//            'checkinDate' => $request->input('checkin_date'),
-//            'checkoutDate' => $request->input('checkout_date'),
-//        ]);
+    public function getHeaderSliders()
+    {
+        return HeaderSlider::query()
+            ->select()
+            ->limit(10)
+            ->get()
+            ;
     }
 }
