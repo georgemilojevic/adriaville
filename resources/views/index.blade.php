@@ -175,7 +175,7 @@
                         <p>
                             {{ __('Croatia Intro') }}
                         </p>
-                        <a class="btn btn-primary" href="#" role="button">{{ __('View all') }}</a>
+                        <a class="btn btn-primary" href="{{ app()->getLocale() }}/all-country-properties/croatia" role="button">{{ __('View all') }}</a>
                         <div class="discover-navigation">
                             <button class="ds-prev disabled"><i class='fal fa-long-arrow-left'></i></button>
                             <button class="ds-next"><i class='fal fa-long-arrow-right'></i></button>
@@ -209,7 +209,7 @@
                         <p>
                             {{ __('Slovenia Intro') }}
                         </p>
-                        <a class="btn btn-primary" href="#" role="button">{{ __('View all') }}</a>
+                        <a class="btn btn-primary" href="{{ app()->getLocale() }}/all-country-properties/slovenia" role="button">{{ __('View all') }}</a>
                         <div class="discover-navigation">
                             <button class="ds-prev disabled"><i class='fal fa-long-arrow-left'></i></button>
                             <button class="ds-next"><i class='fal fa-long-arrow-right'></i></button>
@@ -245,7 +245,7 @@
                         <p>
                             {{ __('Albania Intro') }}
                         </p>
-                        <a class="btn btn-primary" href="#" role="button">{{ __('View all') }}</a>
+                        <a class="btn btn-primary" href="{{ app()->getLocale() }}/all-country-properties/albania" role="button">{{ __('View all') }}</a>
                         <div class="discover-navigation">
                             <button class="ds-prev disabled"><i class='fal fa-long-arrow-left'></i></button>
                             <button class="ds-next"><i class='fal fa-long-arrow-right'></i></button>
@@ -279,7 +279,7 @@
                         <p>
                             {{ __('Montenegro Intro') }}
                         </p>
-                        <a class="btn btn-primary" href="#" role="button">{{ __('View all') }}</a>
+                        <a class="btn btn-primary" href="{{ app()->getLocale() }}/all-country-properties/montenegro" role="button">{{ __('View all') }}</a>
                         <div class="discover-navigation">
                             <button class="ds-prev disabled"><i class='fal fa-long-arrow-left'></i></button>
                             <button class="ds-next"><i class='fal fa-long-arrow-right'></i></button>
@@ -313,7 +313,7 @@
                         <p>
                             {{ __('Bosnia Intro') }}
                         </p>
-                        <a class="btn btn-primary" href="#" role="button">{{ __('View all') }}</a>
+                        <a class="btn btn-primary" href="{{ app()->getLocale() }}/all-country-properties/bosniaandherzegovina" role="button">{{ __('View all') }}</a>
                         <div class="discover-navigation">
                             <button class="ds-prev disabled"><i class='fal fa-long-arrow-left'></i></button>
                             <button class="ds-next"><i class='fal fa-long-arrow-right'></i></button>

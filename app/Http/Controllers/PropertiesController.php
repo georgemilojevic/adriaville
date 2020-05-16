@@ -21,12 +21,16 @@ class PropertiesController extends Controller
         ]);
     }
 
-    public function allCountryProperties(string $country)
+    public function allCountryProperties($language, string $country)
     {
-        $property = new Property();
+        if ($country === 'bosniaandherzegovina') {
+            $country = 'Bosnia and Herzegovina';
+        }
+        $properties = Property::fetchByCountry(ucfirst($country), 100);
 
-        return view('search', [
-            'properties' => Property::fetchByCountry($country),
+        return view('all-country-properties', [
+            'properties' => $properties,
+            'country' => ucfirst($country),
         ]);
     }
 }

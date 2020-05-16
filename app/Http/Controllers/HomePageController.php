@@ -24,11 +24,11 @@ class HomePageController extends Controller
      */
     public function index()
     {
-        $croatianVillas = Property::fetchByCountry(self::CROATIA);
-        $bosnianVillas = Property::fetchByCountry(self::BOSNIA_AND_HERZEGOVINA);
-        $slovenianVillas = Property::fetchByCountry(self::SLOVENIA);
-        $albanianVillas = Property::fetchByCountry(self::ALBANIA);
-        $montenegrianVillas = Property::fetchByCountry(self::MONTENEGRO);
+        $croatianVillas = Property::fetchByCountry(self::CROATIA, 6);
+        $bosnianVillas = Property::fetchByCountry(self::BOSNIA_AND_HERZEGOVINA, 6);
+        $slovenianVillas = Property::fetchByCountry(self::SLOVENIA, 6);
+        $albanianVillas = Property::fetchByCountry(self::ALBANIA, 6);
+        $montenegrianVillas = Property::fetchByCountry(self::MONTENEGRO, 6);
         $spotlightVillas = SpotlightVillas::spotlightVillas();
         $headerSliders = $this->getHeaderSliders();
 

@@ -16,7 +16,8 @@ class Property extends Model
 
     /**
      * @param string $country
-     * @return |null
+     * @param int $limit
+     * @return array
      * @throws \Exception
      */
     public static function fetchByCountry(string $country, int $limit = 6)
@@ -32,8 +33,8 @@ class Property extends Model
                 ->orderBy('id', 'desc')
                 ->limit($limit)
                 ->get();
-        } else {
-            return null;
         }
+
+        return [];
     }
 }
