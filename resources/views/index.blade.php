@@ -170,7 +170,8 @@
             <div class="tab-pane fade show active" id="croatia" role="tabpanel" aria-labelledby="croatia-tab">
                 <div class="row">
                     <div class="col-lg-5 discover-info">
-                        <h3>{{ __('Discover Croatia') }}</h3>
+                        <h3>{{ __('Discover
+                        Croatia') }}</h3>
                         <p>
                             {{ __('Croatia Intro') }}
                         </p>
@@ -358,21 +359,21 @@
                 <div class="row">
                     <div class="col-lg-6 floating-card-wrapper" data-parallax='{"x": 0, "y": 40}'>
                         <div class="floating-card-item">
-                            <img src="https://fakeimg.pl/220x155/D9D9D9/B7B7B7/?retina=1" class="img-fluid" alt="" >
+                            <img src="{{ asset('assets/img/personal-chef.jpeg') }}" class="img-fluid" alt="" >
                             <h6>{{ __('Private chef') }}</h6>
                         </div>
                         <div class="floating-card-item">
-                            <img src="https://fakeimg.pl/220x155/D9D9D9/B7B7B7/?retina=1" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/personal-driver.jpg') }}" class="img-fluid" alt="">
                             <h6>{{ __('Chauffeur') }}</h6>
                         </div>
                     </div>
                     <div class="col-lg-6 floating-card-wrapper" data-parallax='{"x": 0, "y": -40}'>
                         <div class="floating-card-item">
-                            <img src="https://fakeimg.pl/220x155/D9D9D9/B7B7B7/?retina=1" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/personal-babysitter.jpg') }}" class="img-fluid" alt="">
                             <h6>{{ __('Babysitter') }}</h6>
                         </div>
                         <div class="floating-card-item">
-                            <img src="https://fakeimg.pl/220x155/D9D9D9/B7B7B7/?retina=1" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/rent-a-jacht.jpg') }}" class="img-fluid" alt="">
                             <h6>{{ __('Yacht Charter') }}</h6>
                         </div>
                     </div>
