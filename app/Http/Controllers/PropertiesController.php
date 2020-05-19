@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facility;
 use App\Property;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,9 @@ class PropertiesController extends Controller
         $property = Property::where('id', $id)->with('translations')->firstOrFail();
 
         return view('details', [
-            'property' => $property
+            'property' => $property,
+            'images' => json_decode($property->images, true),
+            'facilities' => $property->facilities,
         ]);
     }
 

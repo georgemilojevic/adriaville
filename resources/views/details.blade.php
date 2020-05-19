@@ -76,28 +76,27 @@
     <div class="container-fluid">
         <div class="row">
             <div class="owl-carousel detail-hero-slider col-lg-6">
-                <div class="item" style="background-image: url('/assets/img/hero-home-image.png');">
+                @foreach($images as $image)
+                <div class="item" style="background-image: url({{ asset('storage/' . $image) }});">
                     <div class="overlay-slider"></div>
                 </div>
-                <div class="item" style="background-image: url('/assets/img/hero-home-image.png');">
-                    <div class="overlay-slider"></div>
-                </div>
+                @endforeach
             </div>
             <div class="col-lg-6">
                 <div class="details-specifications">
                     <h1>{{ $property->title }}</h1>
                     <p>{{ $property->getTranslatedAttribute('summary', app()->getLocale(), 'fallbackLocale') }}</p>
                     <ul class="detail-specification-list">
-                        <li><i class="fal fa-user"></i> 7 People</li>
-                        <li><i class="fal fa-bed"></i> 4 Beds</li>
-                        <li><i class="fal fa-home"></i> 4 Rooms</li>
-                        <li><i class="fal fa-bath"></i> 6 Baths</li>
+                        <li><i class="fal fa-user"></i> {{ $property['guests'] }} People</li>
+                        <li><i class="fal fa-bed"></i> {{ $property['beds'] }} Beds</li>
+                        <li><i class="fal fa-home"></i> {{ $property['rooms'] }} Rooms</li>
+                        <li><i class="fal fa-bath"></i> {{ $property['bathrooms'] }} Bathrooms</li>
                     </ul>
                     <div class="detail-specification-footer">
                         <div class="detail-price">
                             40€ - 360€ <span>/ Night</span>
                         </div>
-                        <a class="btn btn-primary" href="#" role="button"  data-toggle="modal" data-target="#requestBooking">Request booking</a>
+                        <a class="btn btn-primary" href="#" role="button"  data-toggle="modal" data-target="#requestBooking">{{ __('Book villa') }}</a>
                     </div>
                 </div>
             </div>
@@ -115,15 +114,15 @@
                     <a class="nav-link" id="availability-tab" data-toggle="tab" href="#availability" role="tab" aria-controls="availability" aria-selected="true">Availability</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="prices-tab" data-toggle="tab" href="#prices" role="tab" aria-controls="prices" aria-selected="false">Prices</a>
+                    <a class="nav-link" id="prices-tab" data-toggle="tab" href="#prices" role="tab" aria-controls="prices" aria-selected="false">Details</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane active show" id="overview" role="tabpanel" aria-labelledby="overview">
                     <div class="tab-item">
-                        <h3>Near Korcula town, Korcula island</h3>
+                        <h3>{{ $property['region'] }}</h3>
                         <p>
-                        {{ $property->getTranslatedAttribute('summary', app()->getLocale(), 'fallbackLocale') }}
+                        {{ $property->getTranslatedAttribute('content', app()->getLocale(), 'fallbackLocale') }}
                         </p>
                     </div>
                     <div class="tab-item">
@@ -132,7 +131,7 @@
                             <li><i class="fal fa-sun"></i> Beach - 12 km</li>
                             <li><i class="fal fa-plane"></i> Pula - 18 km</li>
                             <li><i class="fal fa-road"></i> Fažana - 15 km</li>
-                            <li><i class="fal fa-cloud"></i> Kap Kamenjak - 33 km</li>
+                            <li><i class="fas fa-umbrella-beach"></i> Kap Kamenjak - 33 km</li>
                         </ul>
                     </div>
                     <div class="tab-item">
@@ -153,13 +152,15 @@
                 </div>
                 <div class="tab-pane" id="prices" role="tabpanel" aria-labelledby="prices">
                     <div class="tab-item">
-                        <h3>Prices</h3>
+                        <h3>Details</h3>
                         <div class="detail-price">
-                            40€ - 360€ <span>/ Night</span>
+                            This property includes
                         </div>
-                        <p>
-                            If you are looking for a spectacular villa with direct sea access, luxury design and peaceful surroundings, look no further than Villa Poppy - newly completed, the property is on three levels, located just 5 km from Korcula town. One of the main highlights of the property is the floor to ceiling windows which provide unsurpassed views over the bay and the Peljesac peninsula. The whole property is luxurious and elegantly designed and has been equipped using the best of everything, from crystal chandeliers to gorgeous fabrics and contemporary furnishings.
-                        </p>
+                        @foreach($facilities as $facility)
+                        <ul class="check-list">
+                            <li class="col-lg-6">{{ $facility['title'] }}</li>
+                        </ul>
+                        @endforeach
                     </div>
                 </div>
             </div>
