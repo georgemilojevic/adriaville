@@ -354,7 +354,7 @@
                     <img src="{{ asset('assets/img/adriaville-about2.jpg') }}" alt="">
                 </div>
                 <div class="about-secondary-images">
-                    <img src="{{ asset('assets/img/adriaville-about.jpg') }}" alt="">
+                    <img src="{{ asset('assets/img/adriaville-about-ademir.jpg') }}" alt="">
                     <img src="{{ asset('assets/img/adriaville-about3.jpg') }}" alt="">
                 </div>
             </div>
