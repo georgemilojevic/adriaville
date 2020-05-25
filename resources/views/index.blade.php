@@ -40,6 +40,12 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
+                        <a class="nav-link" href="https://www.instagram.com/adriaville_com"><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.facebook.com/adriaville1"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/contact">Contact</a>
                     </li>
                     <li class="nav-item dropdown language-menu">
@@ -161,17 +167,12 @@
                 <a class="nav-link" id="montenegro-tab" data-toggle="tab" href="#montenegro" role="tab"
                    aria-controls="montenegro" aria-selected="false">{{ __('Montenegro') }}</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="bosnia-tab" data-toggle="tab" href="#bosnia" role="tab"
-                   aria-controls="montenegro" aria-selected="false">{{ __('Bosnia and Herzegovina') }}</a>
-            </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="croatia" role="tabpanel" aria-labelledby="croatia-tab">
                 <div class="row">
                     <div class="col-lg-5 discover-info">
-                        <h3>{{ __('Discover
-                        Croatia') }}</h3>
+                        <h3>{{ __('Discover Croatia') }}</h3>
                         <p>
                             {{ __('Croatia Intro') }}
                         </p>
@@ -204,8 +205,7 @@
             <div class="tab-pane fade" id="slovenia" role="tabpanel" aria-labelledby="slovenia-tab">
                 <div class="row">
                     <div class="col-lg-5 discover-info">
-                        <h3>{{ __('Discover
-                            Slovenia') }}</h3>
+                        <h3>{{ __('Discover Slovenia') }}</h3>
                         <p>
                             {{ __('Slovenia Intro') }}
                         </p>
@@ -240,8 +240,7 @@
             <div class="tab-pane fade" id="albania" role="tabpanel" aria-labelledby="albania-tab">
                 <div class="row">
                     <div class="col-lg-5 discover-info">
-                        <h3>{{ __('Discover
-                            Albania') }}</h3>
+                        <h3>{{ __('Discover Albania') }}</h3>
                         <p>
                             {{ __('Albania Intro') }}
                         </p>
@@ -274,8 +273,7 @@
             <div class="tab-pane fade" id="montenegro" role="tabpanel" aria-labelledby="montenegro-tab">
                 <div class="row">
                     <div class="col-lg-5 discover-info">
-                        <h3>{{ __('Discover
-                            Montenegro') }}</h3>
+                        <h3>{{ __('Discover Montenegro') }}</h3>
                         <p>
                             {{ __('Montenegro Intro') }}
                         </p>
@@ -300,40 +298,6 @@
                                 </div>
                             </div>
                             @endforeach
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="bosnia" role="tabpanel" aria-labelledby="bosnia-tab">
-                <div class="row">
-                    <div class="col-lg-5 discover-info">
-                        <h3>{{ __('Discover
-                            Bosnia and Herzegovina') }}</h3>
-                        <p>
-                            {{ __('Bosnia Intro') }}
-                        </p>
-                        <a class="btn btn-primary" href="{{ app()->getLocale() }}/all-country-properties/bosniaandherzegovina" role="button">{{ __('View all') }}</a>
-                        <div class="discover-navigation">
-                            <button class="ds-prev disabled"><i class='fal fa-long-arrow-left'></i></button>
-                            <button class="ds-next"><i class='fal fa-long-arrow-right'></i></button>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 discover-carousel-wrapper">
-                        <div class="owl-carousel discvover-carousel">
-                            @if(!empty($bosnianVillas))
-                                @foreach($bosnianVillas as $bosnianVilla)
-                                    <?php $bosnianVillaImages = json_decode($bosnianVilla->images, true); ?>
-                                    <div class="item">
-                                        <div class="discover-item-wrapper">
-                                            <div class="discover-item">
-                                                <div class="discover-image" style="background-image: url({{ asset('/storage/'.$bosnianVillaImages[0]) }})"></div>
-                                                <h4>{{ $bosnianVilla['title'] }}</h4>
-                                                <a class="btn-explore" href="{{ app()->getLocale() }}/property/{{ $bosnianVilla['id'] }}">{{ __('Explore') }}</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
                             @endif
                         </div>
                     </div>
@@ -387,11 +351,11 @@
         <div class="row">
             <div class="col-lg-7 about-images">
                 <div class="about-main-image">
-                    <img src="https://fakeimg.pl/370x370/D9D9D9/B7B7B7/?retina=1" alt="">
+                    <img src="{{ asset('assets/img/adriaville-about2.jpg') }}" alt="">
                 </div>
                 <div class="about-secondary-images">
-                    <img src="https://fakeimg.pl/240x260/D9D9D9/B7B7B7/?retina=1" alt="">
-                    <img src="https://fakeimg.pl/170x170/D9D9D9/B7B7B7/?retina=1" alt="">
+                    <img src="{{ asset('assets/img/adriaville-about.jpg') }}" alt="">
+                    <img src="{{ asset('assets/img/adriaville-about3.jpg') }}" alt="">
                 </div>
             </div>
             <div class="col-lg-5 about-content">
@@ -450,10 +414,10 @@
                 </div>
                 <div class="footer-social-links">
                     <a href="https://www.instagram.com/adriaville_com"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/adriaville1"><i class="fab fa-facebook-f"></i></a>
                 </div>
                 <div class="copyright">
-                    © Adriatic Villas 2019. All Rights Reserved.
+                    © Adriaville 2019. All Rights Reserved.
                 </div>
             </div>
         </div>

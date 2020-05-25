@@ -26,9 +26,6 @@ class PropertiesController extends Controller
 
     public function allCountryProperties($language, string $country)
     {
-        if ($country === 'bosniaandherzegovina') {
-            $country = 'Bosnia and Herzegovina';
-        }
         $properties = Property::fetchByCountry(ucfirst($country), 100);
 
         return view('all-country-properties', [

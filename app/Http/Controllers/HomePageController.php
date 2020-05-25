@@ -16,7 +16,6 @@ class HomePageController extends Controller
     public const SLOVENIA = 'Slovenia';
     public const MONTENEGRO = 'Montenegro';
     public const ALBANIA = 'Albania';
-    public const BOSNIA_AND_HERZEGOVINA = 'Bosnia and Herzegovina';
 
     /**
      * @return \Illuminate\Contracts\View\Factory|View
@@ -25,7 +24,6 @@ class HomePageController extends Controller
     public function index()
     {
         $croatianVillas = Property::fetchByCountry(self::CROATIA, 6);
-        $bosnianVillas = Property::fetchByCountry(self::BOSNIA_AND_HERZEGOVINA, 6);
         $slovenianVillas = Property::fetchByCountry(self::SLOVENIA, 6);
         $albanianVillas = Property::fetchByCountry(self::ALBANIA, 6);
         $montenegrianVillas = Property::fetchByCountry(self::MONTENEGRO, 6);
@@ -37,7 +35,6 @@ class HomePageController extends Controller
             'slovenianVillas' => $slovenianVillas,
             'montenegrianVillas' => $montenegrianVillas,
             'albanianVillas' => $albanianVillas,
-            'bosnianVillas' => $bosnianVillas,
             'spotlightVillas' => $spotlightVillas,
             'headerSliders' => $headerSliders,
         ]);
