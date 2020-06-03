@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@smartweb/vue-flash-message": "^0.6.4",
         "moment": "^2.24.0",
         "node-sass": "^4.13.1",
         "vue-axios": "^2.1.5",

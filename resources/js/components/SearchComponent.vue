@@ -31,7 +31,7 @@
                         <label for="totalGuests">Guests</label>
                         <div class="number-input-group">
                             <span class="input-number-decrement" v-on:click="guests -= 1"><i class="fal fa-minus"></i></span>
-                            <input class="input-number" type="text" value="0" min="1" max="30" id="totalGuests" name="guests" v-model="guests" >
+                            <input class="input-number" type="text" value="0" min="1" max="50" id="totalGuests" name="guests" v-model="guests" >
                             <span class="input-number-increment" v-on:click="guests += 1"><i class="fal fa-plus"></i></span>
                         </div>
                     </div>

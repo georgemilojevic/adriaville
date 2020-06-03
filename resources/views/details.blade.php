@@ -3,6 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Adriaville - Adriatic Cost Rentals">
+    <meta property="og:description" content="Offering high quality villas for individuals or groups.">
+    <meta property="og:image" content="http://142.93.174.229/assets/img/hero-home-image.png">
+    <meta property="og:url" content="http://142.93.174.229/">
     <title>AdriaVille</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
@@ -109,7 +113,7 @@
         </div>
     </div>
 </section>
-<div class="container details-sections">
+<div class="container details-sections" id="app">
     <div class="container">
         <section class="tabs-content-details">
             <ul class="nav nav-tabs" id="discover" role="tablist">
@@ -172,69 +176,29 @@
             </div>
         </section>
     </div>
-</div>
-    <!-- Modal -->
     <div class="request-booking modal fade" id="requestBooking" tabindex="-1" role="dialog" aria-labelledby="requestBookingTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="header-modal-content mx-auto">
-                        <h5>Request Booking</h5>
-                        <h2>Villa Poppy</h2>
+                        <h5>Request a booking for</h5>
+                        <h2>{{ $property['title'] }}</h2>
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-lg-6 input-request-modal">
-                                <div class="form-group">
-                                    <label for="firstName">Email address</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="Type your name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="Type last name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email address</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Type email address">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" id="phone" placeholder="Type phone number">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 request-modal-checkbox">
-                                <p>
-                                    Select if you need some of our extras and we will send you our offer
-                                </p>
-                                <div class="form-group">
-                                    <input type="checkbox" id="privateCheaf" name="privateCheaf" value="Private Chef" hidden>
-                                    <label for="privateCheaf">Private Chef</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" id="babysitter" name="babysitter" value="Babysitter" hidden>
-                                    <label for="babysitter">Babysitter</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" id="chauffeur" name="chauffeur" value="Chauffeur" hidden>
-                                    <label for="chauffeur">Chauffeur</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" id="yachtCharter" name="yachtCharter" value="Yacht Charter" hidden>
-                                    <label for="yachtCharter">Yacht Charter</label>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Send request</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                <booking-component
+                        v-bind:property="{
+                            name: '{{ $property['title'] }}',
+                            id: '{{ $property['id'] }}'
+                        }"
+                >
+                </booking-component>
             </div>
         </div>
     </div>
+</div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqbtTa7CRXUADzqKTJyQZ_TkD7itNHcCM"></script>
     <script>
         google.maps.event.addDomListener(window, 'load', init);
@@ -396,6 +360,7 @@
         </div>
     </div>
 </footer>
+
 <!-- start modal contact -->
 <div class="request-booking modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="requestBookingTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -573,6 +538,7 @@
     </div>
 </div>
 <!-- end modal terms and conditions -->
+
 <script src="{{ asset('/js/app.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -582,3 +548,5 @@
 <script src="{{ asset('/assets/js/jquery.amsifyselect.js') }}"></script>
 <script src="{{ asset('/assets/js/lightpick.js') }}"></script>
 <script src="{{ asset('/assets/js/custom.js') }}"></script>
+</body>
+</html>
