@@ -1989,6 +1989,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")["default"];
 
 
@@ -2007,7 +2011,12 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")["d
       name: '',
       phone: '',
       extras: [],
-      flashMessages: _smartweb_vue_flash_message__WEBPACK_IMPORTED_MODULE_1___default.a
+      flashMessage: '',
+      formResponse: false,
+      classObject: {
+        'alert-success': false,
+        'alert-warning': false
+      }
     };
   },
   props: ['property', 'calendarKey'],
@@ -2032,25 +2041,16 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")["d
         console.log(response);
 
         if (response.status === 200) {
-          _this.flashMessage.success({
-            title: 'Request booking sent!',
-            message: response.data.message,
-            x: 0,
-            y: 100,
-            css: 'opacity: 1!important'
-          });
+          _this.flashMessage = response.data.message;
+          _this.formResponse = true;
+          _this.classObject = 'alert-success';
         }
       })["catch"](function (error) {
         if (error.response.status === 500) {
           console.log(error.response.data);
-
-          _this.flashMessage.error({
-            title: 'Something went wrong!',
-            message: error.response.data.message,
-            x: 0,
-            y: 100,
-            css: 'opacity: 1!important'
-          });
+          _this.flashMessage = error.response.data.message;
+          _this.formResponse = true;
+          _this.classObject = 'alert-warning';
         }
 
         _this.errors = error.response.data.errors || {};
@@ -41536,374 +41536,389 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "modal-body" },
-    [
-      _c("FlashMessage", { attrs: { position: "right bottom" } }),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.requestBooking($event)
+  return _c("div", { staticClass: "modal-body" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-6 input-request-modal" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "email" } }, [_vm._v("Email address")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "email",
+              id: "email",
+              placeholder: "Type your email",
+              required: ""
+            },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.email = $event.target.value
+              }
             }
-          }
-        },
-        [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-6 input-request-modal" }, [
-              _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "email" } }, [
-                  _vm._v("Email address")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.email,
-                      expression: "email"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "email",
-                    id: "email",
-                    placeholder: "Type your email",
-                    required: ""
-                  },
-                  domProps: { value: _vm.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.email = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "lastName" } }, [
-                  _vm._v("Name, Last Name")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.name,
-                      expression: "name"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "lastName",
-                    placeholder: "Type your name",
-                    required: ""
-                  },
-                  domProps: { value: _vm.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.name = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", { attrs: { for: "reservationDates" } }, [
-                    _vm._v("Check In / Check Out")
-                  ]),
-                  _vm._v(" "),
-                  _c("functional-calendar", {
-                    staticClass: "form-control",
-                    attrs: {
-                      "is-date-range": true,
-                      isModal: true,
-                      placeholder: "Anytime",
-                      id: "reservationDates",
-                      name: "reservationDates",
-                      required: ""
-                    },
-                    model: {
-                      value: _vm.reservationDates,
-                      callback: function($$v) {
-                        _vm.reservationDates = $$v
-                      },
-                      expression: "reservationDates"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "phone" } }, [_vm._v("Phone")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.phone,
-                      expression: "phone"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "phone",
-                    placeholder: "Type phone number",
-                    required: ""
-                  },
-                  domProps: { value: _vm.phone },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.phone = $event.target.value
-                    }
-                  }
-                })
-              ])
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "lastName" } }, [
+            _vm._v("Name, Last Name")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "lastName",
+              placeholder: "Type your name",
+              required: ""
+            },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "reservationDates" } }, [
+              _vm._v("Check In / Check Out")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-lg-6 request-modal-checkbox" }, [
-              _c("p", [
-                _vm._v(
-                  "\n                Select if you need some of our extras and we will send you our offer\n            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.extras,
-                      expression: "extras"
-                    }
-                  ],
-                  attrs: {
-                    type: "checkbox",
-                    id: "privateChef",
-                    name: "privateChef",
-                    value: "Private Chef",
-                    hidden: ""
-                  },
-                  domProps: {
-                    checked: Array.isArray(_vm.extras)
-                      ? _vm._i(_vm.extras, "Private Chef") > -1
-                      : _vm.extras
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.extras,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = "Private Chef",
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (_vm.extras = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (_vm.extras = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.extras = $$c
-                      }
-                    }
+            _c("functional-calendar", {
+              staticClass: "form-control",
+              attrs: {
+                "is-date-range": true,
+                isModal: true,
+                placeholder: "Anytime",
+                id: "reservationDates",
+                name: "reservationDates",
+                required: ""
+              },
+              model: {
+                value: _vm.reservationDates,
+                callback: function($$v) {
+                  _vm.reservationDates = $$v
+                },
+                expression: "reservationDates"
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "phone" } }, [_vm._v("Phone")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.phone,
+                expression: "phone"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "phone",
+              placeholder: "Type phone number",
+              required: ""
+            },
+            domProps: { value: _vm.phone },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.phone = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-6 request-modal-checkbox" }, [
+        _c("p", [
+          _vm._v(
+            "\n                Select if you need some of our extras and we will send you our offer\n            "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.extras,
+                expression: "extras"
+              }
+            ],
+            attrs: {
+              type: "checkbox",
+              id: "privateChef",
+              name: "privateChef",
+              value: "Private Chef",
+              hidden: ""
+            },
+            domProps: {
+              checked: Array.isArray(_vm.extras)
+                ? _vm._i(_vm.extras, "Private Chef") > -1
+                : _vm.extras
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.extras,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "Private Chef",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.extras = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.extras = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
                   }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "privateChef" } }, [
-                  _vm._v("Private Chef")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.extras,
-                      expression: "extras"
-                    }
-                  ],
-                  attrs: {
-                    type: "checkbox",
-                    id: "babySitter",
-                    name: "babySitter",
-                    value: "Babysitter",
-                    hidden: ""
-                  },
-                  domProps: {
-                    checked: Array.isArray(_vm.extras)
-                      ? _vm._i(_vm.extras, "Babysitter") > -1
-                      : _vm.extras
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.extras,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = "Babysitter",
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (_vm.extras = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (_vm.extras = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.extras = $$c
-                      }
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "babySitter" } }, [
-                  _vm._v("Babysitter")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.extras,
-                      expression: "extras"
-                    }
-                  ],
-                  attrs: {
-                    type: "checkbox",
-                    id: "chauffeur",
-                    name: "chauffeur",
-                    value: "Chauffeur",
-                    hidden: ""
-                  },
-                  domProps: {
-                    checked: Array.isArray(_vm.extras)
-                      ? _vm._i(_vm.extras, "Chauffeur") > -1
-                      : _vm.extras
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.extras,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = "Chauffeur",
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (_vm.extras = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (_vm.extras = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.extras = $$c
-                      }
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "chauffeur" } }, [
-                  _vm._v("Chauffeur")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.extras,
-                      expression: "extras"
-                    }
-                  ],
-                  attrs: {
-                    type: "checkbox",
-                    id: "yachtCharter",
-                    name: "yachtCharter",
-                    value: "Yacht Charter",
-                    hidden: ""
-                  },
-                  domProps: {
-                    checked: Array.isArray(_vm.extras)
-                      ? _vm._i(_vm.extras, "Yacht Charter") > -1
-                      : _vm.extras
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.extras,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = "Yacht Charter",
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (_vm.extras = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (_vm.extras = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.extras = $$c
-                      }
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "yachtCharter" } }, [
-                  _vm._v("Yacht Charter")
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                [_vm._v("Send request")]
-              )
-            ])
+                } else {
+                  _vm.extras = $$c
+                }
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "privateChef" } }, [
+            _vm._v("Private Chef")
           ])
-        ]
-      )
-    ],
-    1
-  )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.extras,
+                expression: "extras"
+              }
+            ],
+            attrs: {
+              type: "checkbox",
+              id: "babySitter",
+              name: "babySitter",
+              value: "Babysitter",
+              hidden: ""
+            },
+            domProps: {
+              checked: Array.isArray(_vm.extras)
+                ? _vm._i(_vm.extras, "Babysitter") > -1
+                : _vm.extras
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.extras,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "Babysitter",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.extras = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.extras = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.extras = $$c
+                }
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "babySitter" } }, [_vm._v("Babysitter")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.extras,
+                expression: "extras"
+              }
+            ],
+            attrs: {
+              type: "checkbox",
+              id: "chauffeur",
+              name: "chauffeur",
+              value: "Chauffeur",
+              hidden: ""
+            },
+            domProps: {
+              checked: Array.isArray(_vm.extras)
+                ? _vm._i(_vm.extras, "Chauffeur") > -1
+                : _vm.extras
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.extras,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "Chauffeur",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.extras = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.extras = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.extras = $$c
+                }
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "chauffeur" } }, [_vm._v("Chauffeur")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.extras,
+                expression: "extras"
+              }
+            ],
+            attrs: {
+              type: "checkbox",
+              id: "yachtCharter",
+              name: "yachtCharter",
+              value: "Yacht Charter",
+              hidden: ""
+            },
+            domProps: {
+              checked: Array.isArray(_vm.extras)
+                ? _vm._i(_vm.extras, "Yacht Charter") > -1
+                : _vm.extras
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.extras,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "Yacht Charter",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.extras = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.extras = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.extras = $$c
+                }
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "yachtCharter" } }, [
+            _vm._v("Yacht Charter")
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.formResponse
+          ? _c(
+              "div",
+              {
+                staticClass: "alert alert-dismissible fade show",
+                class: _vm.classObject,
+                attrs: { role: "alert" }
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.flashMessage) +
+                    "\n                "
+                ),
+                _vm._m(0)
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { type: "submit" },
+            on: { click: _vm.requestBooking }
+          },
+          [_vm._v("Send request")]
+        )
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  }
+]
 render._withStripped = true
 
 

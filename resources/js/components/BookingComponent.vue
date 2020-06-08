@@ -1,9 +1,6 @@
 <template>
     <div class="modal-body">
 
-        <FlashMessage :position="'right bottom'"></FlashMessage>
-
-        <form v-on:submit.prevent="requestBooking">
         <div class="row">
             <div class="col-lg-6 input-request-modal">
                 <div class="form-group">
@@ -58,10 +55,17 @@
                     <input type="checkbox" id="yachtCharter" name="yachtCharter" value="Yacht Charter" hidden v-model="extras">
                     <label for="yachtCharter">Yacht Charter</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Send request</button>
+
+                <div v-if="formResponse" v-bind:class="classObject" class="alert alert-dismissible fade show" role="alert">
+                    {{ flashMessage }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <button type="submit" class="btn btn-primary" v-on:click="requestBooking">Send request</button>
             </div>
         </div>
-        </form>
     </div>
 </template>
 
@@ -84,7 +88,12 @@
                 name: '',
                 phone: '',
                 extras: [],
-                flashMessages: FlashMessage
+                flashMessage: '',
+                formResponse: false,
+                classObject: {
+                    'alert-success': false,
+                    'alert-warning': false,
+                }
             }
         },
         props: [
@@ -108,24 +117,16 @@
                 }).then(response => {
                     console.log(response);
                     if (response.status === 200) {
-                        this.flashMessage.success({
-                            title: 'Request booking sent!',
-                            message: response.data.message,
-                            x: 0,
-                            y: 100,
-                            css: 'opacity: 1!important'
-                        });
+                        this.flashMessage = response.data.message;
+                        this.formResponse = true;
+                        this.classObject = 'alert-success';
                     }
                 }).catch(error => {
                     if (error.response.status === 500) {
                         console.log(error.response.data);
-                        this.flashMessage.error({
-                            title: 'Something went wrong!',
-                            message: error.response.data.message,
-                            x: 0,
-                            y: 100,
-                            css: 'opacity: 1!important'
-                        });
+                        this.flashMessage = error.response.data.message;
+                        this.formResponse = true;
+                        this.classObject = 'alert-warning';
                     }
                     this.errors = error.response.data.errors || {};
                 });
