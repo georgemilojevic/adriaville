@@ -131,7 +131,7 @@
                         propertyName: this.property.name,
                     }
                 }).then(response => {
-                    console.log(response);
+                    // console.log(response);
                     if (response.status === 200) {
                         this.flashMessage = response.data.message;
                         this.formResponse = true;
@@ -140,7 +140,7 @@
                         e.preventDefault();
                     }
                 }).catch(error => {
-                    console.log(error.response.data);
+                    // console.log(error.response.data);
                     if (error.response.status === 500) {
                         this.flashMessage = error.response.data.message;
                         this.formResponse = true;
