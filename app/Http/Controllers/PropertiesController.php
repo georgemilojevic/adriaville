@@ -21,6 +21,7 @@ class PropertiesController extends Controller
             'property' => $property,
             'images' => json_decode($property->images, true),
             'facilities' => $property->facilities,
+            'coordinates' => $property->getCoordinates(),
         ]);
     }
 

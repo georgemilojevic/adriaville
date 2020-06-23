@@ -97,14 +97,14 @@
                     <h1>{{ $property->title }}</h1>
                     <p>{{ $property->getTranslatedAttribute('summary', app()->getLocale(), 'fallbackLocale') }}</p>
                     <ul class="detail-specification-list">
-                        <li><i class="fal fa-user"></i> {{ $property['guests'] }} People</li>
-                        <li><i class="fal fa-bed"></i> {{ $property['beds'] }} Beds</li>
-                        <li><i class="fal fa-home"></i> {{ $property['rooms'] }} Rooms</li>
-                        <li><i class="fal fa-bath"></i> {{ $property['bathrooms'] }} Bathrooms</li>
+                        <li><i class="fal fa-user"></i> {{ $property['guests'] }} {{ __('People') }}</li>
+                        <li><i class="fal fa-bed"></i> {{ $property['beds'] }} {{ __('Beds') }}</li>
+                        <li><i class="fal fa-home"></i> {{ $property['rooms'] }} {{ __('Rooms') }}</li>
+                        <li><i class="fal fa-bath"></i> {{ $property['bathrooms'] }} {{ __('Bathrooms') }}</li>
                     </ul>
                     <div class="detail-specification-footer">
                         <div class="detail-price">
-                            40€ - 360€ <span>/ Night</span>
+                            40€ - 360€ <span>/ {{ __('Night') }}</span>
                         </div>
                         <a class="btn btn-primary" href="#" role="button"  data-toggle="modal" data-target="#requestBooking">{{ __('Book villa') }}</a>
                     </div>
@@ -118,13 +118,13 @@
         <section class="tabs-content-details">
             <ul class="nav nav-tabs" id="discover" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active show" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="false">Overview</a>
+                    <a class="nav-link active show" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="false">{{ __('Overview') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="availability-tab" data-toggle="tab" href="#availability" role="tab" aria-controls="availability" aria-selected="true">Availability</a>
+                    <a class="nav-link" id="availability-tab" data-toggle="tab" href="#availability" role="tab" aria-controls="availability" aria-selected="true">{{ __('Availability') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="prices-tab" data-toggle="tab" href="#prices" role="tab" aria-controls="prices" aria-selected="false">Details</a>
+                    <a class="nav-link" id="prices-tab" data-toggle="tab" href="#prices" role="tab" aria-controls="prices" aria-selected="false">{{ __('Details') }}</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -136,35 +136,35 @@
                         </p>
                     </div>
                     <div class="tab-item">
-                        <h3>Surroundings</h3>
+                        <h3>{{ __('Surroundings') }}</h3>
                         <ul class="surroundings-list">
-                            <li><i class="fal fa-sun"></i> Beach - 12 km</li>
-                            <li><i class="fal fa-plane"></i> Pula - 18 km</li>
-                            <li><i class="fal fa-road"></i> Fažana - 15 km</li>
-                            <li><i class="fas fa-umbrella-beach"></i> Kap Kamenjak - 33 km</li>
+                            <li><i class="fas fa-umbrella-beach"></i> {{ $property['beach'] }}</li>
+                            <li><i class="fa fa-ship"></i> {{ $property['harbor'] }}</li>
+                            <li><i class="fa fa-plane"></i> {{ $property['airport'] }}</li>
+                            <li><i class="fa fa-shopping-cart"></i> {{ $property['shopping'] }}</li>
                         </ul>
                     </div>
                     <div class="tab-item">
                         <h3>
-                            Where can you find us:
+                            {{ __('Where can you find us:') }}
                         </h3>
                         <div id="map"></div>
                     </div>
                 </div>
                 <div class="tab-pane" id="availability" role="tabpanel" aria-labelledby="availability">
-                    <div class="availability-legend"><span class="occupied">Occupied</span><span class="available">Available</span></div>
+                    <div class="availability-legend"><span class="occupied">{{ __('Occupied') }}</span><span class="available">{{ __('Available') }}</span></div>
                     <div class="tab-item">
                         <h3>
-                            Villa Availability
+                            {{ __('Villa Availability') }}
                         </h3>
                         <input type="text" id="detail-date-picker" hidden>
                     </div>
                 </div>
                 <div class="tab-pane" id="prices" role="tabpanel" aria-labelledby="prices">
                     <div class="tab-item">
-                        <h3>Details</h3>
+                        <h3>{{ __('Details') }}</h3>
                         <div class="detail-price">
-                            This property includes
+                            {{ __('This property includes') }}
                         </div>
                         @foreach($facilities as $facility)
                         <ul class="check-list">
@@ -181,7 +181,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="header-modal-content mx-auto">
-                        <h5>Request a booking for</h5>
+                        <h5>{{ __('Request a booking for') }}</h5>
                         <h2>{{ $property['title'] }}</h2>
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -206,7 +206,7 @@
             var mapOptions = {
                 zoom:11,
                 disableDefaultUI: true,
-                center: new google.maps.LatLng(43.5159789, 16.4140642),
+                center: new google.maps.LatLng(`{{ $coordinates[0]['lat'] }}` , `{{ $coordinates[0]['lng'] }}` ),
                 styles:
                     [
                         {
@@ -331,7 +331,7 @@
             var mapElement = document.getElementById('map');
             var map = new google.maps.Map(mapElement, mapOptions);
             var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(43.5159789, 16.4140642),
+                position: new google.maps.LatLng(`{{ $coordinates[0]['lat'] }}` , `{{ $coordinates[0]['lng'] }}` ),
                 icon: '/assets/img/map-icon.png',
                 map: map,
                 title: 'Location'

@@ -39,7 +39,9 @@ class BookingController extends Controller
     {
         try {
             $customer = Customer::firstOrNew(['email' => $data['email']]);
-
+            if(empty($data['email'])) {
+                throw new \Exception('Customer not saved!');
+            }
             $customer->email = $data['email'];
             $customer->full_name = $data['name'];
             $customer->phone_number = $data['phone'];

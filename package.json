@@ -29,6 +29,7 @@
         "node-sass": "^4.13.1",
         "vue-axios": "^2.1.5",
         "vue-functional-calendar": "^2.8.79",
-        "vuejs-datepicker": "^1.6.2"
+        "vuejs-datepicker": "^1.6.2",
+        "vuelidate": "^0.7.5"
     }
 }

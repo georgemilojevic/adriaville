@@ -1,39 +1,43 @@
 <template>
     <div class="modal-body">
-
         <div class="row">
             <div class="col-lg-6 input-request-modal">
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input
-                            type="email" class="form-control" id="email" placeholder="Type your email" required
-                            v-model="email">
+                            type="email" class="form-control" id="email" placeholder="Type your email"
+                            v-model="email" required>
                 </div>
+
                 <div class="form-group">
                     <label for="lastName">Name, Last Name</label>
                     <input
-                            type="text" class="form-control" id="lastName" placeholder="Type your name" required
-                            v-model="name">
+                            type="text" class="form-control" id="lastName" placeholder="Type your name"
+                            v-model="name" required>
                 </div>
+
                 <div class="form-group">
+                    <span v-if="componentLoaded" class="alert alert-warning">No dates selected!</span>
                     <label for="reservationDates">Check In / Check Out</label>
                     <functional-calendar
                             :is-date-range='true'
                             :isModal='true'
                             v-model="reservationDates"
                             class="form-control"
-                            placeholder="Anytime"
                             id="reservationDates"
                             name="reservationDates"
-                            required
+                            ref="Calendar"
+                            :newCurrentDate="new Date()"
                     ></functional-calendar>
                 </div>
+
                 <div class="form-group">
                     <label for="phone">Phone</label>
                     <input
-                            type="text" class="form-control" id="phone" placeholder="Type phone number" required
+                            type="text" class="form-control" id="phone" placeholder="Type phone number"
                             v-model="phone">
                 </div>
+
             </div>
             <div class="col-lg-6 request-modal-checkbox">
                 <p>
@@ -56,35 +60,36 @@
                     <label for="yachtCharter">Yacht Charter</label>
                 </div>
 
-                <div v-if="formResponse" v-bind:class="classObject" class="alert alert-dismissible fade show" role="alert">
+                <div v-if="formResponse" v-bind:class="classObject" class="alert fade show" role="alert">
                     {{ flashMessage }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
 
                 <button type="submit" class="btn btn-primary" v-on:click="requestBooking">Send request</button>
             </div>
         </div>
     </div>
+
 </template>
 
 <script>
     const axios = require('axios').default;
     import { FunctionalCalendar } from 'vue-functional-calendar';
-    import FlashMessage from '@smartweb/vue-flash-message';
+    import { validationMixin } from 'vuelidate'
+    const { required, minLength, between } = require('vuelidate/lib/validators');
 
     export default {
         components: {
             FunctionalCalendar
         },
+        mixins: [validationMixin],
         mounted() {
-            console.log('Booking Component')
+            this.$refs.Calendar.ChooseDate('today');
         },
         data() {
             return {
                 email: '',
                 reservationDates: {},
+                startDate: new Date(),
                 name: '',
                 phone: '',
                 extras: [],
@@ -93,22 +98,33 @@
                 classObject: {
                     'alert-success': false,
                     'alert-warning': false,
-                }
+                },
+                componentLoaded: false,
+                age: 0
+            }
+        },
+        validations: {
+            name: {
+                required,
+                minLength: minLength(4)
+            },
+            age: {
+                between: between(20, 30)
             }
         },
         props: [
-            'property', 'calendarKey'
+            'property', 'calendarKey', 'dateRange',
         ],
         methods: {
-            requestBooking() {
+            requestBooking(e) {
                 axios({
                     method: 'post',
                     url: '/booking-request',
                     data: {
                         email: this.email,
                         name: this.name,
-                        startDate: this.reservationDates.dateRange.start ? this.reservationDates.dateRange.start : '',
-                        endDate: this.reservationDates.dateRange.end ? this.reservationDates.dateRange.end : '',
+                        startDate: this.reservationDates.dateRange.start,
+                        endDate: this.reservationDates.dateRange.end,
                         phone: this.phone,
                         extras: this.extras,
                         propertyId: this.property.id,
@@ -120,10 +136,12 @@
                         this.flashMessage = response.data.message;
                         this.formResponse = true;
                         this.classObject = 'alert-success';
+                        this.componentLoaded = false;
+                        e.preventDefault();
                     }
                 }).catch(error => {
+                    console.log(error.response.data);
                     if (error.response.status === 500) {
-                        console.log(error.response.data);
                         this.flashMessage = error.response.data.message;
                         this.formResponse = true;
                         this.classObject = 'alert-warning';
