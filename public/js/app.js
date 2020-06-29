@@ -2009,7 +2009,12 @@ var _require = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modul
       startDate: new Date(),
       name: '',
       phone: '',
-      extras: [],
+      extras: {
+        "chef": 0,
+        "babysitter": 0,
+        "chauffeur": 0,
+        "yachtcharter": 0
+      },
       flashMessage: '',
       formResponse: false,
       classObject: {
@@ -2048,8 +2053,7 @@ var _require = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modul
           propertyName: this.property.name
         }
       }).then(function (response) {
-        console.log(response);
-
+        // console.log(response);
         if (response.status === 200) {
           _this.flashMessage = response.data.message;
           _this.formResponse = true;
@@ -2058,8 +2062,7 @@ var _require = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modul
           e.preventDefault();
         }
       })["catch"](function (error) {
-        console.log(error.response.data);
-
+        // console.log(error.response.data);
         if (error.response.status === 500) {
           _this.flashMessage = error.response.data.message;
           _this.formResponse = true;
@@ -41696,8 +41699,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.extras,
-                expression: "extras"
+                value: _vm.extras.chef,
+                expression: "extras.chef"
               }
             ],
             attrs: {
@@ -41708,28 +41711,30 @@ var render = function() {
               hidden: ""
             },
             domProps: {
-              checked: Array.isArray(_vm.extras)
-                ? _vm._i(_vm.extras, "Private Chef") > -1
-                : _vm.extras
+              checked: Array.isArray(_vm.extras.chef)
+                ? _vm._i(_vm.extras.chef, "Private Chef") > -1
+                : _vm.extras.chef
             },
             on: {
               change: function($event) {
-                var $$a = _vm.extras,
+                var $$a = _vm.extras.chef,
                   $$el = $event.target,
                   $$c = $$el.checked ? true : false
                 if (Array.isArray($$a)) {
                   var $$v = "Private Chef",
                     $$i = _vm._i($$a, $$v)
                   if ($$el.checked) {
-                    $$i < 0 && (_vm.extras = $$a.concat([$$v]))
+                    $$i < 0 && _vm.$set(_vm.extras, "chef", $$a.concat([$$v]))
                   } else {
                     $$i > -1 &&
-                      (_vm.extras = $$a
-                        .slice(0, $$i)
-                        .concat($$a.slice($$i + 1)))
+                      _vm.$set(
+                        _vm.extras,
+                        "chef",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
                   }
                 } else {
-                  _vm.extras = $$c
+                  _vm.$set(_vm.extras, "chef", $$c)
                 }
               }
             }
@@ -41746,8 +41751,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.extras,
-                expression: "extras"
+                value: _vm.extras.babysitter,
+                expression: "extras.babysitter"
               }
             ],
             attrs: {
@@ -41758,28 +41763,31 @@ var render = function() {
               hidden: ""
             },
             domProps: {
-              checked: Array.isArray(_vm.extras)
-                ? _vm._i(_vm.extras, "Babysitter") > -1
-                : _vm.extras
+              checked: Array.isArray(_vm.extras.babysitter)
+                ? _vm._i(_vm.extras.babysitter, "Babysitter") > -1
+                : _vm.extras.babysitter
             },
             on: {
               change: function($event) {
-                var $$a = _vm.extras,
+                var $$a = _vm.extras.babysitter,
                   $$el = $event.target,
                   $$c = $$el.checked ? true : false
                 if (Array.isArray($$a)) {
                   var $$v = "Babysitter",
                     $$i = _vm._i($$a, $$v)
                   if ($$el.checked) {
-                    $$i < 0 && (_vm.extras = $$a.concat([$$v]))
+                    $$i < 0 &&
+                      _vm.$set(_vm.extras, "babysitter", $$a.concat([$$v]))
                   } else {
                     $$i > -1 &&
-                      (_vm.extras = $$a
-                        .slice(0, $$i)
-                        .concat($$a.slice($$i + 1)))
+                      _vm.$set(
+                        _vm.extras,
+                        "babysitter",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
                   }
                 } else {
-                  _vm.extras = $$c
+                  _vm.$set(_vm.extras, "babysitter", $$c)
                 }
               }
             }
@@ -41794,8 +41802,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.extras,
-                expression: "extras"
+                value: _vm.extras.chauffeur,
+                expression: "extras.chauffeur"
               }
             ],
             attrs: {
@@ -41806,28 +41814,31 @@ var render = function() {
               hidden: ""
             },
             domProps: {
-              checked: Array.isArray(_vm.extras)
-                ? _vm._i(_vm.extras, "Chauffeur") > -1
-                : _vm.extras
+              checked: Array.isArray(_vm.extras.chauffeur)
+                ? _vm._i(_vm.extras.chauffeur, "Chauffeur") > -1
+                : _vm.extras.chauffeur
             },
             on: {
               change: function($event) {
-                var $$a = _vm.extras,
+                var $$a = _vm.extras.chauffeur,
                   $$el = $event.target,
                   $$c = $$el.checked ? true : false
                 if (Array.isArray($$a)) {
                   var $$v = "Chauffeur",
                     $$i = _vm._i($$a, $$v)
                   if ($$el.checked) {
-                    $$i < 0 && (_vm.extras = $$a.concat([$$v]))
+                    $$i < 0 &&
+                      _vm.$set(_vm.extras, "chauffeur", $$a.concat([$$v]))
                   } else {
                     $$i > -1 &&
-                      (_vm.extras = $$a
-                        .slice(0, $$i)
-                        .concat($$a.slice($$i + 1)))
+                      _vm.$set(
+                        _vm.extras,
+                        "chauffeur",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
                   }
                 } else {
-                  _vm.extras = $$c
+                  _vm.$set(_vm.extras, "chauffeur", $$c)
                 }
               }
             }
@@ -41842,8 +41853,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.extras,
-                expression: "extras"
+                value: _vm.extras.yachtcharter,
+                expression: "extras.yachtcharter"
               }
             ],
             attrs: {
@@ -41854,28 +41865,31 @@ var render = function() {
               hidden: ""
             },
             domProps: {
-              checked: Array.isArray(_vm.extras)
-                ? _vm._i(_vm.extras, "Yacht Charter") > -1
-                : _vm.extras
+              checked: Array.isArray(_vm.extras.yachtcharter)
+                ? _vm._i(_vm.extras.yachtcharter, "Yacht Charter") > -1
+                : _vm.extras.yachtcharter
             },
             on: {
               change: function($event) {
-                var $$a = _vm.extras,
+                var $$a = _vm.extras.yachtcharter,
                   $$el = $event.target,
                   $$c = $$el.checked ? true : false
                 if (Array.isArray($$a)) {
                   var $$v = "Yacht Charter",
                     $$i = _vm._i($$a, $$v)
                   if ($$el.checked) {
-                    $$i < 0 && (_vm.extras = $$a.concat([$$v]))
+                    $$i < 0 &&
+                      _vm.$set(_vm.extras, "yachtcharter", $$a.concat([$$v]))
                   } else {
                     $$i > -1 &&
-                      (_vm.extras = $$a
-                        .slice(0, $$i)
-                        .concat($$a.slice($$i + 1)))
+                      _vm.$set(
+                        _vm.extras,
+                        "yachtcharter",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
                   }
                 } else {
-                  _vm.extras = $$c
+                  _vm.$set(_vm.extras, "yachtcharter", $$c)
                 }
               }
             }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Customer;
+use App\Mail\BookingReceived;
+use App\Property;
+use Illuminate\Support\Facades\Mail;
 use Mockery\Exception;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -21,6 +24,8 @@ class BookingController extends Controller
         try {
             $customer = $this->saveCustomer($data);
             $this->saveBooking($data, $customer);
+            $this->sendCustomerEmail($data);
+
             return response()->json([
                 'name' => $customer->full_name,
                 'message' => 'Your booking request has been sent. Please wait for our agent to reach you with your reservation details'
@@ -69,10 +74,37 @@ class BookingController extends Controller
             $booking->status = 'pending';
             $booking->customer_id = $customer->id;
             $booking->property_id = $data['propertyId'];
+            if (!empty($data['extras'])) {
+                $booking->private_chef = $data['extras']['chef'];
+                $booking->babysitter = $data['extras']['babysitter'];
+                $booking->chauffeur = $data['extras']['chauffeur'];
+                $booking->yacht = $data['extras']['yachtcharter'];
+            }
             $booking->save();
             return $booking;
         } catch (\Exception $e) {
             throw new \Exception('Booking not saved! Please check have you selected correct check in times.');
+        }
+    }
+
+    /**
+     * @param string $data
+     * @throws \Exception
+     */
+    public function sendCustomerEmail($data)
+    {
+        try {
+            $property = Property::where('id', $data['propertyId'])->with('translations')->firstOrFail();
+            $data['images'] = json_decode($property->images, true);
+            $data['propertyName'] = $property->title;
+
+            Mail::to($data['email'])
+                ->send(new BookingReceived($data));
+            if (Mail::failures()) {
+                throw new \Exception('Something went wrong, email confirmation not sent. Please contact us on info@adriaville.com');
+            }
+        } catch (\Exception $exception) {
+            throw $exception;
         }
     }
 }

@@ -17,6 +17,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::post('/search', 'HomePageController@search');
 Route::post('/booking-request', 'BookingController@requestBooking');
+//Route::get('/send-email', 'BookingController@sendEmail');
 
 Route::group(['prefix' =>'{language}'], function () {
 

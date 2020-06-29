@@ -44,19 +44,19 @@
                     Select if you need some of our extras and we will send you our offer
                 </p>
                 <div class="form-group">
-                    <input type="checkbox" id="privateChef" name="privateChef" value="Private Chef" hidden v-model="extras">
+                    <input type="checkbox" id="privateChef" name="privateChef" value="Private Chef" hidden v-model="extras.chef">
                     <label for="privateChef">Private Chef</label>
                 </div>
                 <div class="form-group">
-                    <input type="checkbox" id="babySitter" name="babySitter" value="Babysitter" hidden v-model="extras">
+                    <input type="checkbox" id="babySitter" name="babySitter" value="Babysitter" hidden v-model="extras.babysitter">
                     <label for="babySitter">Babysitter</label>
                 </div>
                 <div class="form-group">
-                    <input type="checkbox" id="chauffeur" name="chauffeur" value="Chauffeur" hidden v-model="extras">
+                    <input type="checkbox" id="chauffeur" name="chauffeur" value="Chauffeur" hidden v-model="extras.chauffeur">
                     <label for="chauffeur">Chauffeur</label>
                 </div>
                 <div class="form-group">
-                    <input type="checkbox" id="yachtCharter" name="yachtCharter" value="Yacht Charter" hidden v-model="extras">
+                    <input type="checkbox" id="yachtCharter" name="yachtCharter" value="Yacht Charter" hidden v-model="extras.yachtcharter">
                     <label for="yachtCharter">Yacht Charter</label>
                 </div>
 
@@ -92,7 +92,12 @@
                 startDate: new Date(),
                 name: '',
                 phone: '',
-                extras: [],
+                extras: {
+                    "chef": 0,
+                    "babysitter": 0,
+                    "chauffeur": 0,
+                    "yachtcharter": 0
+                },
                 flashMessage: '',
                 formResponse: false,
                 classObject: {
