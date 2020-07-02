@@ -199,7 +199,7 @@
         </div>
     </div>
 </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqbtTa7CRXUADzqKTJyQZ_TkD7itNHcCM"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
     <script>
         google.maps.event.addDomListener(window, 'load', init);
         function init() {
